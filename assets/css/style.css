@@ -3,17 +3,20 @@
    ========================================================================== */
 
 :root {
-  --black: #0a0a0d;
-  --white: #f5f3ef;
-  --accent: #ff5d5d;
-  --accent-2: #7c8cff;
-  --muted: #8a8a93;
+  --black: #0b1f16;
+  --white: #ffffff;
+  --accent: #5ee6a0;
+  --accent-2: #5ee6a0;
+  --muted: #8fb0a1;
 
-  --scene-1: 10, 10, 13;
-  --scene-2: 18, 15, 26;
-  --scene-3: 12, 17, 22;
-  --scene-4: 22, 14, 20;
-  --scene-5: 10, 10, 13;
+  --scene-1: 10, 26, 18;
+  --scene-2: 13, 31, 22;
+  --scene-3: 9, 23, 16;
+  --scene-4: 14, 33, 24;
+  --scene-5: 10, 26, 18;
+
+  --nav-bg: rgba(9, 22, 16, 0.88);
+  --border: rgba(255, 255, 255, 0.12);
 
   --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
@@ -83,8 +86,10 @@ h1, h2, h3 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.75rem clamp(1.5rem, 5vw, 4rem);
-  mix-blend-mode: difference;
+  padding: 1.35rem clamp(1.5rem, 5vw, 4rem);
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
 }
 
 .topbar__name {
@@ -92,10 +97,12 @@ h1, h2, h3 {
   font-size: 1.05rem;
   font-weight: 600;
   letter-spacing: -0.01em;
+  color: var(--white);
 }
 
 .topbar__nav {
   display: flex;
+  align-items: center;
   gap: 2.5rem;
   font-size: 0.85rem;
 }
@@ -103,13 +110,13 @@ h1, h2, h3 {
 .topbar__nav a {
   position: relative;
   padding-bottom: 0.2rem;
-  opacity: 0.7;
-  transition: opacity 0.3s var(--ease);
+  color: var(--muted);
+  transition: color 0.3s var(--ease);
 }
 
 .topbar__nav a:hover,
 .topbar__nav a.is-active {
-  opacity: 1;
+  color: var(--white);
 }
 
 .topbar__nav a::after {
@@ -119,7 +126,7 @@ h1, h2, h3 {
   bottom: 0;
   height: 1px;
   width: 100%;
-  background: currentColor;
+  background: var(--accent);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.4s var(--ease);
@@ -130,8 +137,22 @@ h1, h2, h3 {
   transform-origin: left;
 }
 
+.topbar__cta {
+  padding: 0.55rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: var(--white);
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.topbar__cta:hover {
+  border-color: var(--accent);
+  background: rgba(94, 230, 160, 0.1);
+}
+
 @media (max-width: 720px) {
-  .topbar__nav {
+  .topbar__nav a:not(.topbar__cta) {
     display: none;
   }
 }
@@ -329,7 +350,7 @@ h1, h2, h3 {
 .about__portrait {
   aspect-ratio: 3 / 4;
   border-radius: 4px;
-  background: linear-gradient(155deg, rgba(255, 93, 93, 0.18), rgba(124, 140, 255, 0.12)),
+  background: linear-gradient(155deg, rgba(94, 230, 160, 0.16), rgba(255, 255, 255, 0.06)),
     repeating-linear-gradient(135deg, rgba(245, 243, 239, 0.04) 0 2px, transparent 2px 14px);
   border: 1px solid rgba(245, 243, 239, 0.12);
   display: flex;
@@ -485,7 +506,7 @@ h1, h2, h3 {
 
 .work-card__thumb {
   aspect-ratio: 4 / 3;
-  background: var(--thumb, linear-gradient(155deg, #201823, #14181f));
+  background: var(--thumb, linear-gradient(155deg, #14291d, #0b1a13));
   display: flex;
   align-items: center;
   justify-content: center;
