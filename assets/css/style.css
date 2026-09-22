@@ -8,8 +8,8 @@
   --sage: #93ab9d;
   --emerald: #57e39a;
   --emerald-dim: #2f7a53;
-  --hairline: rgba(246, 243, 234, 0.14);
-  --hairline-strong: rgba(246, 243, 234, 0.28);
+  --hairline: rgba(246, 243, 234, 0.18);
+  --hairline-strong: rgba(246, 243, 234, 0.34);
 
   --scene-1: 7, 19, 9;
   --scene-2: 9, 24, 13;
@@ -123,9 +123,59 @@ h1 em, h2 em, h3 em {
   display: inline-block;
   width: 22px;
   height: 1px;
-  background: var(--emerald);
+  background: var(--ivory);
   margin-right: 0.85em;
   vertical-align: middle;
+}
+
+/* ---------- face line ---------- */
+
+.face-line {
+  position: fixed;
+  top: 50%;
+  right: clamp(-2vw, 1vw, 4vw);
+  transform: translateY(-50%);
+  width: clamp(280px, 32vw, 480px);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.8s var(--ease);
+}
+
+.face-line.is-dimmed {
+  opacity: 0.08;
+}
+
+.face-line svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.face-line path {
+  fill: none;
+  stroke: var(--ivory);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#hairLine {
+  opacity: 0.75;
+}
+
+@media (max-width: 960px) {
+  .face-line {
+    width: clamp(200px, 46vw, 320px);
+    opacity: 0.6;
+  }
+}
+
+@media (max-width: 640px) {
+  .face-line {
+    display: none;
+  }
 }
 
 /* ---------- progress bar ---------- */
@@ -512,7 +562,7 @@ h1 em, h2 em, h3 em {
   font-family: var(--font-display);
   font-style: italic;
   font-size: 0.95rem;
-  color: var(--emerald);
+  color: var(--ivory);
   margin-bottom: 1.5rem;
 }
 

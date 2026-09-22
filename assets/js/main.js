@@ -81,6 +81,8 @@
   const navLinks = document.querySelectorAll("[data-nav]");
   const dots = document.querySelectorAll("[data-dot]");
   const scrollCue = document.getElementById("scrollCue");
+  const faceLineWrap = document.querySelector(".face-line");
+  const dimOnScenes = new Set(["skills", "work"]);
 
   const sceneColors = {
     intro: [7, 19, 9],
@@ -99,6 +101,9 @@
     }
     if (scrollCue) {
       scrollCue.classList.toggle("is-hidden", id !== "intro");
+    }
+    if (faceLineWrap) {
+      faceLineWrap.classList.toggle("is-dimmed", dimOnScenes.has(id));
     }
   };
 
@@ -121,15 +126,44 @@
     });
   });
 
-  /* ---------- scroll progress bar ---------- */
+  /* ---------- scroll progress bar + face line drawing ---------- */
 
   const progressFill = document.getElementById("scrollProgressFill");
-  if (progressFill) {
+  const faceLine = document.getElementById("faceLine");
+  const hairLine = document.getElementById("hairLine");
+
+  const faceLength = faceLine ? faceLine.getTotalLength() : 0;
+  const hairLength = hairLine ? hairLine.getTotalLength() : 0;
+
+  if (faceLine) {
+    faceLine.style.strokeDasharray = faceLength;
+    faceLine.style.strokeDashoffset = reduceMotion ? 0 : faceLength;
+  }
+  if (hairLine) {
+    hairLine.style.strokeDasharray = hairLength;
+    hairLine.style.strokeDashoffset = reduceMotion ? 0 : hairLength;
+  }
+
+  if (progressFill || (faceLine && !reduceMotion) || (hairLine && !reduceMotion)) {
     const updateProgress = () => {
       const doc = document.documentElement;
       const max = doc.scrollHeight - doc.clientHeight;
-      const pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
-      progressFill.style.width = `${pct}%`;
+      const scrollPct = max > 0 ? doc.scrollTop / max : 0;
+
+      if (progressFill) {
+        progressFill.style.width = `${scrollPct * 100}%`;
+      }
+
+      if (!reduceMotion) {
+        if (faceLine) {
+          const faceProgress = Math.min(1, Math.max(0, scrollPct / 0.55));
+          faceLine.style.strokeDashoffset = faceLength * (1 - faceProgress);
+        }
+        if (hairLine) {
+          const hairProgress = Math.min(1, Math.max(0, (scrollPct - 0.35) / 0.65));
+          hairLine.style.strokeDashoffset = hairLength * (1 - hairProgress);
+        }
+      }
     };
     window.addEventListener("scroll", updateProgress, { passive: true });
     updateProgress();
