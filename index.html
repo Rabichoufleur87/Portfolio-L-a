@@ -5,18 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Léa Vergnenegre — Designer</title>
   <meta name="description" content="Portfolio de Léa Vergnenegre, designer et étudiante en Métiers du Multimédia et de l'Internet — identité visuelle, UI/UX, motion design, vidéo." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230b1f16%22/><text x=%2250%22 y=%2268%22 font-size=%2260%22 fill=%22%235ee6a0%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>L</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23071309%22/><text x=%2250%22 y=%2268%22 font-size=%2260%22 fill=%22%2357e39a%22 text-anchor=%22middle%22 font-family=%22serif%22 font-style=%22italic%22>L</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 
   <div class="cursor-dot" aria-hidden="true"></div>
 
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress__fill" id="scrollProgressFill"></div>
+  </div>
+
   <header class="topbar">
-    <a href="#intro" class="topbar__name">Léa<span style="color: var(--accent)">.</span></a>
+    <a href="#intro" class="topbar__name">Léa Vergnenegre</a>
     <nav class="topbar__nav">
       <a href="#about" data-nav="about">À propos</a>
       <a href="#skills" data-nav="skills">Compétences</a>
@@ -43,21 +47,21 @@
     <!-- SCÈNE 1 — INTRO -->
     <section id="intro" class="scene scene--intro" data-scene="1">
       <div class="scene__inner">
-        <span class="eyebrow" data-reveal>Portfolio — Métiers du Multimédia et de l'Internet</span>
+        <span class="eyebrow" data-assemble="top">Portfolio — Métiers du Multimédia et de l'Internet</span>
         <h1 class="intro__title">
-          <span data-reveal="scale" style="transition-delay: .05s">Léa Vergnenegre,</span>
-          <span data-reveal="scale" style="transition-delay: .15s"><em>designer</em>.</span>
+          <span data-assemble="left">Léa Vergnenegre,</span>
+          <span data-assemble="right"><em>designer</em>.</span>
         </h1>
-        <p class="intro__sub" data-reveal style="transition-delay: .4s">
+        <p class="intro__sub" data-assemble="bottom">
           Étudiante en MMI, je conçois des interfaces, des identités visuelles et des expériences
           numériques où design et technique se rencontrent.
         </p>
-        <div class="intro__meta" data-reveal style="transition-delay: .5s">
-          <div>
+        <div class="intro__meta">
+          <div data-assemble="bottom">
             <strong>2025 — 2026</strong>
             BUT Métiers du Multimédia et de l'Internet
           </div>
-          <div>
+          <div data-assemble="bottom">
             <strong>Basée en France</strong>
             Ouverte aux stages &amp; projets freelance
           </div>
@@ -68,19 +72,19 @@
     <!-- SCÈNE 2 — À PROPOS -->
     <section id="about" class="scene scene--about" data-scene="2">
       <div class="scene__inner about">
-        <div class="about__portrait" data-reveal="left">
+        <div class="about__portrait" data-assemble="left">
           <!-- Remplacer par : <img src="assets/img/avatar/lea.jpg" alt="Portrait de Léa" /> -->
           Photo de Léa
         </div>
         <div>
-          <span class="eyebrow" data-reveal="right">À propos</span>
-          <h2 data-reveal="right" style="transition-delay: .1s">Le multimédia comme terrain de jeu.</h2>
-          <p data-reveal="right" style="transition-delay: .2s">
+          <span class="eyebrow" data-assemble="right">À propos</span>
+          <h2 data-assemble="right">Le multimédia comme terrain de jeu.</h2>
+          <p data-assemble="right">
             Curieuse et créative, j'aime autant <strong>dessiner une identité de marque</strong>
             que <strong>coder une interface</strong> ou <strong>monter une vidéo</strong>. Le MMI m'a
             appris à porter un projet de A à Z : du brief client au pixel final.
           </p>
-          <p data-reveal="right" style="transition-delay: .3s">
+          <p data-assemble="right">
             Je cherche à créer des expériences qui ont du sens, à la croisée du design, de
             l'image et du code — avec toujours un souci du détail et de la cohérence visuelle.
           </p>
@@ -93,40 +97,40 @@
       <div class="scene__inner">
         <div class="skills__head">
           <div>
-            <span class="eyebrow" data-reveal>Ce que je fais</span>
-            <h2 data-reveal style="transition-delay: .1s">Compétences &amp; outils</h2>
+            <span class="eyebrow" data-assemble="top">Ce que je fais</span>
+            <h2 data-assemble="top">Compétences &amp; outils</h2>
           </div>
-          <p data-reveal style="transition-delay: .2s">
+          <p data-assemble="top">
             Une palette de compétences transversales, du print au digital.
           </p>
         </div>
         <div class="skills-grid">
-          <div class="skill-card" data-reveal="scale" style="transition-delay: .05s">
+          <div class="skill-card" data-assemble="left">
             <span class="skill-card__num">01</span>
             <h3>Identité visuelle</h3>
             <p>Logotypes, chartes graphiques, direction artistique.</p>
           </div>
-          <div class="skill-card" data-reveal="scale" style="transition-delay: .1s">
+          <div class="skill-card" data-assemble="top">
             <span class="skill-card__num">02</span>
             <h3>UI / UX Design</h3>
             <p>Wireframes, maquettes Figma, prototypage d'interfaces.</p>
           </div>
-          <div class="skill-card" data-reveal="scale" style="transition-delay: .15s">
+          <div class="skill-card" data-assemble="right">
             <span class="skill-card__num">03</span>
             <h3>Motion design</h3>
             <p>Animations 2D, habillages vidéo, micro-interactions.</p>
           </div>
-          <div class="skill-card" data-reveal="scale" style="transition-delay: .2s">
+          <div class="skill-card" data-assemble="left">
             <span class="skill-card__num">04</span>
             <h3>Vidéo &amp; montage</h3>
             <p>Tournage, montage, étalonnage, motion capture légère.</p>
           </div>
-          <div class="skill-card" data-reveal="scale" style="transition-delay: .25s">
+          <div class="skill-card" data-assemble="top">
             <span class="skill-card__num">05</span>
             <h3>Développement web</h3>
             <p>HTML, CSS, JavaScript, intégration responsive.</p>
           </div>
-          <div class="skill-card" data-reveal="scale" style="transition-delay: .3s">
+          <div class="skill-card" data-assemble="right">
             <span class="skill-card__num">06</span>
             <h3>Photographie</h3>
             <p>Prise de vue, retouche, direction artistique photo.</p>
@@ -139,9 +143,9 @@
     <section id="work" class="scene scene--work" data-scene="4">
       <div class="scene__inner">
         <div class="work__head">
-          <span class="eyebrow" data-reveal>Sélection de projets</span>
-          <h2 data-reveal style="transition-delay: .1s">Créations</h2>
-          <p data-reveal style="transition-delay: .2s">
+          <span class="eyebrow" data-assemble="top">Sélection de projets</span>
+          <h2 data-assemble="top">Créations</h2>
+          <p data-assemble="top">
             Les projets de Léa arrivent bientôt ici — chaque carte ci-dessous est prête à
             accueillir une création (image, lien, description).
           </p>
@@ -149,7 +153,7 @@
 
         <!-- GRILLE DE PROJETS : dupliquer une .work-card par création envoyée -->
         <div class="work-grid">
-          <a href="#" class="work-card work-card--soon" data-reveal="scale">
+          <a href="#" class="work-card work-card--soon" data-assemble="left">
             <div class="work-card__thumb" style="--thumb: linear-gradient(155deg, #153524, #0b1a13)"></div>
             <div class="work-card__body">
               <div>
@@ -159,7 +163,7 @@
               <span class="work-card__arrow">↗</span>
             </div>
           </a>
-          <a href="#" class="work-card work-card--soon" data-reveal="scale" style="transition-delay: .05s">
+          <a href="#" class="work-card work-card--soon" data-assemble="right">
             <div class="work-card__thumb" style="--thumb: linear-gradient(155deg, #12291b, #0b1a13)"></div>
             <div class="work-card__body">
               <div>
@@ -169,7 +173,7 @@
               <span class="work-card__arrow">↗</span>
             </div>
           </a>
-          <a href="#" class="work-card work-card--soon" data-reveal="scale" style="transition-delay: .1s">
+          <a href="#" class="work-card work-card--soon" data-assemble="left">
             <div class="work-card__thumb" style="--thumb: linear-gradient(155deg, #0f2e1f, #0b1a13)"></div>
             <div class="work-card__body">
               <div>
@@ -179,7 +183,7 @@
               <span class="work-card__arrow">↗</span>
             </div>
           </a>
-          <a href="#" class="work-card work-card--soon" data-reveal="scale" style="transition-delay: .15s">
+          <a href="#" class="work-card work-card--soon" data-assemble="right">
             <div class="work-card__thumb" style="--thumb: linear-gradient(155deg, #183c28, #0b1a13)"></div>
             <div class="work-card__body">
               <div>
@@ -196,16 +200,16 @@
     <!-- SCÈNE 5 — CONTACT -->
     <section id="contact" class="scene scene--contact" data-scene="5">
       <div class="scene__inner">
-        <span class="eyebrow" data-reveal>Travaillons ensemble</span>
-        <h2 class="contact__title" data-reveal style="transition-delay: .1s">
+        <span class="eyebrow" data-assemble="top">Travaillons ensemble</span>
+        <h2 class="contact__title" data-assemble="scale">
           Une idée, un stage,<br />un projet ?
           <a href="mailto:contact@example.com">Écrivez-moi.</a>
         </h2>
-        <div class="contact__links" data-reveal style="transition-delay: .2s">
-          <a href="mailto:contact@example.com">contact@example.com</a>
-          <a href="#" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="#" target="_blank" rel="noopener">Behance</a>
-          <a href="#" target="_blank" rel="noopener">Instagram</a>
+        <div class="contact__links">
+          <a href="mailto:contact@example.com" data-assemble="bottom">contact@example.com</a>
+          <a href="#" target="_blank" rel="noopener" data-assemble="bottom">LinkedIn</a>
+          <a href="#" target="_blank" rel="noopener" data-assemble="bottom">Behance</a>
+          <a href="#" target="_blank" rel="noopener" data-assemble="bottom">Instagram</a>
         </div>
       </div>
     </section>
@@ -213,7 +217,7 @@
   </main>
 
   <footer class="site-footer">
-    <span>© 2026 Léa — Portfolio MMI</span>
+    <span>© 2026 Léa Vergnenegre — Portfolio MMI</span>
     <span>Fait avec soin</span>
   </footer>
 

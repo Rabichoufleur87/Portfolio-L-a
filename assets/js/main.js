@@ -1,21 +1,79 @@
 (() => {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- reveal on scroll ---------- */
+  /* ---------- scroll-driven assembly (dependency-free) ---------- */
 
-  const revealEls = document.querySelectorAll("[data-reveal]");
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in-view");
-          revealObserver.unobserve(entry.target);
-        }
+  const offsets = {
+    left: { x: -80, y: 0 },
+    right: { x: 80, y: 0 },
+    top: { x: 0, y: -60 },
+    bottom: { x: 0, y: 55 },
+    scale: { x: 0, y: 30, scale: 0.92 },
+  };
+
+  const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+  /* intro: one-time entrance on load, independent of scroll position */
+
+  const introItems = document.querySelectorAll(".scene--intro [data-assemble]");
+  if (!reduceMotion) {
+    introItems.forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.12}s`;
+    });
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        introItems.forEach((el) => el.classList.add("is-in"));
       });
-    },
-    { threshold: 0.2, rootMargin: "0px 0px -8% 0px" }
-  );
-  revealEls.forEach((el) => revealObserver.observe(el));
+    });
+  } else {
+    introItems.forEach((el) => el.classList.add("is-in"));
+  }
+
+  /* other scenes: assembly tied directly to scroll position */
+
+  let assembleItems = [];
+
+  if (!reduceMotion) {
+    document.querySelectorAll(".scene:not(.scene--intro)").forEach((scene) => {
+      scene.querySelectorAll("[data-assemble]").forEach((el, i) => {
+        el.style.willChange = "transform, opacity";
+        assembleItems.push({ el, index: i, dir: el.dataset.assemble });
+      });
+    });
+
+    const updateAssembly = () => {
+      const vh = window.innerHeight;
+      assembleItems.forEach(({ el, index, dir }) => {
+        const shift = index * 42;
+        const startY = vh * 0.92 - shift;
+        const endY = vh * 0.42 - shift;
+        let progress = (startY - el.getBoundingClientRect().top) / (startY - endY);
+        progress = Math.min(1, Math.max(0, progress));
+        const eased = easeOutCubic(progress);
+        const off = offsets[dir] || offsets.bottom;
+        const x = off.x * (1 - eased);
+        const y = off.y * (1 - eased);
+        const scale = off.scale ? off.scale + (1 - off.scale) * eased : 1;
+        el.style.transform = `translate(${x.toFixed(2)}px, ${y.toFixed(2)}px) scale(${scale.toFixed(3)})`;
+        el.style.opacity = eased.toFixed(3);
+      });
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateAssembly();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    updateAssembly();
+  }
 
   /* ---------- active scene tracking (nav + dots + bg color) ---------- */
 
@@ -25,11 +83,11 @@
   const scrollCue = document.getElementById("scrollCue");
 
   const sceneColors = {
-    intro: [10, 10, 13],
-    about: [18, 15, 26],
-    skills: [12, 17, 22],
-    work: [22, 14, 20],
-    contact: [10, 10, 13],
+    intro: [7, 19, 9],
+    about: [9, 24, 13],
+    skills: [7, 17, 10],
+    work: [11, 28, 16],
+    contact: [7, 19, 9],
   };
 
   const setActive = (id) => {
@@ -62,6 +120,20 @@
       if (target) target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
     });
   });
+
+  /* ---------- scroll progress bar ---------- */
+
+  const progressFill = document.getElementById("scrollProgressFill");
+  if (progressFill) {
+    const updateProgress = () => {
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - doc.clientHeight;
+      const pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+      progressFill.style.width = `${pct}%`;
+    };
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    updateProgress();
+  }
 
   /* ---------- custom cursor ---------- */
 
