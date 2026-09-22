@@ -352,6 +352,8 @@ h1 em, h2 em, h3 em {
 }
 
 .scene__inner {
+  position: relative;
+  z-index: 2;
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
@@ -773,4 +775,77 @@ h1 em, h2 em, h3 em {
   .cursor-dot {
     display: none;
   }
+}
+
+/* ---------- ambient cursor glow ---------- */
+
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 560px;
+  height: 560px;
+  margin-left: -280px;
+  margin-top: -280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(87, 227, 154, 0.14), rgba(87, 227, 154, 0) 68%);
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  will-change: transform;
+}
+
+.cursor-glow.is-active {
+  opacity: 1;
+}
+
+@media (hover: none), (max-width: 720px), (prefers-reduced-motion: reduce) {
+  .cursor-glow {
+    display: none;
+  }
+}
+
+/* ---------- magnetic elements ---------- */
+
+.magnetic {
+  transition: transform 0.35s var(--ease);
+}
+
+/* ---------- section index numerals ---------- */
+
+.scene__index {
+  position: absolute;
+  top: 50%;
+  left: clamp(1.5rem, 5vw, 4rem);
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(9rem, 24vw, 22rem);
+  line-height: 1;
+  color: var(--ivory);
+  opacity: 0.055;
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+}
+
+@media (max-width: 720px) {
+  .scene__index {
+    display: none;
+  }
+}
+
+/* ---------- headline curtain wipe ---------- */
+
+[data-wipe] {
+  clip-path: inset(0 0 0 0);
+}
+
+/* ---------- card tilt ---------- */
+
+.skill-card,
+.work-card {
+  transform-style: preserve-3d;
+  transition: transform 0.5s var(--ease), background 0.4s var(--ease), border-color 0.4s var(--ease);
 }

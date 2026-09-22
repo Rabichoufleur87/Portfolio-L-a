@@ -14,6 +14,7 @@
 <body>
 
   <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
 
   <div class="scroll-line" aria-hidden="true">
     <div class="scroll-line__fill" id="scrollLineFill"></div>
@@ -29,16 +30,16 @@
       <a href="#about" data-nav="about">À propos</a>
       <a href="#skills" data-nav="skills">Compétences</a>
       <a href="#work" data-nav="work">Créations</a>
-      <a href="#contact" class="topbar__cta">Contact</a>
+      <a href="#contact" class="topbar__cta magnetic">Contact</a>
     </nav>
   </header>
 
   <nav class="progress-rail" aria-hidden="true">
-    <button class="progress-rail__dot" data-dot="intro" aria-label="Aller à l'introduction"></button>
-    <button class="progress-rail__dot" data-dot="about" aria-label="Aller à la section à propos"></button>
-    <button class="progress-rail__dot" data-dot="skills" aria-label="Aller aux compétences"></button>
-    <button class="progress-rail__dot" data-dot="work" aria-label="Aller aux créations"></button>
-    <button class="progress-rail__dot" data-dot="contact" aria-label="Aller au contact"></button>
+    <button class="progress-rail__dot magnetic" data-dot="intro" aria-label="Aller à l'introduction"></button>
+    <button class="progress-rail__dot magnetic" data-dot="about" aria-label="Aller à la section à propos"></button>
+    <button class="progress-rail__dot magnetic" data-dot="skills" aria-label="Aller aux compétences"></button>
+    <button class="progress-rail__dot magnetic" data-dot="work" aria-label="Aller aux créations"></button>
+    <button class="progress-rail__dot magnetic" data-dot="contact" aria-label="Aller au contact"></button>
   </nav>
 
   <div class="scroll-cue" id="scrollCue">
@@ -75,6 +76,7 @@
 
     <!-- SCÈNE 2 — À PROPOS -->
     <section id="about" class="scene scene--about" data-scene="2">
+      <span class="scene__index" aria-hidden="true">02</span>
       <div class="scene__inner about">
         <div class="about__portrait" data-assemble="left">
           <!-- Remplacer par : <img src="assets/img/avatar/lea.jpg" alt="Portrait de Léa" /> -->
@@ -82,7 +84,7 @@
         </div>
         <div>
           <span class="eyebrow" data-assemble="right">À propos</span>
-          <h2 data-assemble="right">Le multimédia comme terrain de jeu.</h2>
+          <h2 data-assemble="right" data-wipe>Le multimédia comme terrain de jeu.</h2>
           <p data-assemble="right">
             Curieuse et créative, j'aime autant <strong>dessiner une identité de marque</strong>
             que <strong>coder une interface</strong> ou <strong>monter une vidéo</strong>. Le MMI m'a
@@ -98,11 +100,12 @@
 
     <!-- SCÈNE 3 — COMPÉTENCES -->
     <section id="skills" class="scene scene--skills" data-scene="3">
+      <span class="scene__index" aria-hidden="true">03</span>
       <div class="scene__inner">
         <div class="skills__head">
           <div>
             <span class="eyebrow" data-assemble="top">Ce que je fais</span>
-            <h2 data-assemble="top">Compétences &amp; outils</h2>
+            <h2 data-assemble="top" data-wipe>Compétences &amp; outils</h2>
           </div>
           <p data-assemble="top">
             Une palette de compétences transversales, du print au digital.
@@ -145,10 +148,11 @@
 
     <!-- SCÈNE 4 — CRÉATIONS -->
     <section id="work" class="scene scene--work" data-scene="4">
+      <span class="scene__index" aria-hidden="true">04</span>
       <div class="scene__inner">
         <div class="work__head">
           <span class="eyebrow" data-assemble="top">Sélection de projets</span>
-          <h2 data-assemble="top">Créations</h2>
+          <h2 data-assemble="top" data-wipe>Créations</h2>
           <p data-assemble="top">
             Les projets de Léa arrivent bientôt ici — chaque carte ci-dessous est prête à
             accueillir une création (image, lien, description).
@@ -203,17 +207,18 @@
 
     <!-- SCÈNE 5 — CONTACT -->
     <section id="contact" class="scene scene--contact" data-scene="5">
+      <span class="scene__index" aria-hidden="true">05</span>
       <div class="scene__inner">
         <span class="eyebrow" data-assemble="top">Travaillons ensemble</span>
         <h2 class="contact__title" data-assemble="scale">
           Une idée, un stage,<br />un projet ?
-          <a href="mailto:contact@example.com">Écrivez-moi.</a>
+          <a href="mailto:contact@example.com" class="magnetic">Écrivez-moi.</a>
         </h2>
         <div class="contact__links">
-          <a href="mailto:contact@example.com" data-assemble="bottom">contact@example.com</a>
-          <a href="#" target="_blank" rel="noopener" data-assemble="bottom">LinkedIn</a>
-          <a href="#" target="_blank" rel="noopener" data-assemble="bottom">Behance</a>
-          <a href="#" target="_blank" rel="noopener" data-assemble="bottom">Instagram</a>
+          <a href="mailto:contact@example.com" data-assemble="bottom" class="magnetic">contact@example.com</a>
+          <a href="#" target="_blank" rel="noopener" data-assemble="bottom" class="magnetic">LinkedIn</a>
+          <a href="#" target="_blank" rel="noopener" data-assemble="bottom" class="magnetic">Behance</a>
+          <a href="#" target="_blank" rel="noopener" data-assemble="bottom" class="magnetic">Instagram</a>
         </div>
       </div>
     </section>
