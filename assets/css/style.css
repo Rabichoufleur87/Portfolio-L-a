@@ -128,52 +128,27 @@ h1 em, h2 em, h3 em {
   vertical-align: middle;
 }
 
-/* ---------- face line ---------- */
+/* ---------- vertical scroll line ---------- */
 
-.face-line {
+.scroll-line {
   position: fixed;
-  top: 50%;
-  right: clamp(-2vw, 1vw, 4vw);
-  transform: translateY(-50%);
-  width: clamp(280px, 32vw, 480px);
-  z-index: 1;
+  top: 0;
+  left: clamp(1.1rem, 2.8vw, 2.25rem);
+  width: 1px;
+  height: 100vh;
+  background: var(--hairline);
+  z-index: 5;
   pointer-events: none;
-  opacity: 1;
-  transition: opacity 0.8s var(--ease);
 }
 
-.face-line.is-dimmed {
-  opacity: 0.08;
-}
-
-.face-line svg {
+.scroll-line__fill {
   width: 100%;
-  height: auto;
-  display: block;
-  overflow: visible;
-}
-
-.face-line path {
-  fill: none;
-  stroke: var(--ivory);
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-#hairLine {
-  opacity: 0.75;
-}
-
-@media (max-width: 960px) {
-  .face-line {
-    width: clamp(200px, 46vw, 320px);
-    opacity: 0.6;
-  }
+  height: 0%;
+  background: linear-gradient(180deg, var(--ivory), var(--emerald));
 }
 
 @media (max-width: 640px) {
-  .face-line {
+  .scroll-line {
     display: none;
   }
 }
