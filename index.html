@@ -2,234 +2,427 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Léa Vergnenegre — Designer</title>
   <meta name="description" content="Portfolio de Léa Vergnenegre, designer et étudiante en Métiers du Multimédia et de l'Internet — identité visuelle, UI/UX, motion design, vidéo." />
+  <meta name="theme-color" content="#071309" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23071309%22/><text x=%2250%22 y=%2268%22 font-size=%2260%22 fill=%22%2357e39a%22 text-anchor=%22middle%22 font-family=%22serif%22 font-style=%22italic%22>L</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
+  <script>
+    // Affiche l'écran de chargement seulement si le JS tourne ; filet de sécurité s'il ne se termine jamais.
+    document.documentElement.classList.add("js");
+    window.__loaderFailsafe = setTimeout(function () {
+      document.documentElement.classList.add("loader-done");
+    }, 5000);
+  </script>
 </head>
 <body>
 
-  <div class="cursor-dot" aria-hidden="true"></div>
-  <div class="cursor-glow" aria-hidden="true"></div>
-
-  <div class="scroll-line" aria-hidden="true">
-    <div class="scroll-line__fill" id="scrollLineFill"></div>
+  <!-- ÉCRAN DE CHARGEMENT -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__top">
+      <span>Léa Vergnenegre</span>
+      <span>Portfolio 2026</span>
+    </div>
+    <span class="loader__count" id="loaderCount">000</span>
+    <div class="loader__bar"><span id="loaderBar"></span></div>
   </div>
 
-  <div class="scroll-progress" aria-hidden="true">
-    <div class="scroll-progress__fill" id="scrollProgressFill"></div>
+  <!-- CURSEUR -->
+  <div class="cursor" aria-hidden="true">
+    <div class="cursor__ring"><span class="cursor__label"></span></div>
+    <div class="cursor__dot"></div>
   </div>
+
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+  <div class="scroll-line" aria-hidden="true"><span id="scrollLine"></span></div>
 
   <header class="topbar">
-    <a href="#intro" class="topbar__name">Léa Vergnenegre</a>
-    <nav class="topbar__nav">
-      <a href="#about" data-nav="about">À propos</a>
-      <a href="#skills" data-nav="skills">Compétences</a>
-      <a href="#work" data-nav="work">Créations</a>
-      <a href="#contact" class="topbar__cta magnetic">Contact</a>
+    <a href="#intro" class="topbar__name" data-scroll-to>Léa V.</a>
+    <nav class="topbar__nav" aria-label="Navigation principale">
+      <a href="#about" data-nav="about" data-scroll-to>À propos</a>
+      <a href="#skills" data-nav="skills" data-scroll-to>Compétences</a>
+      <a href="#work" data-nav="work" data-scroll-to>Créations</a>
+      <a href="#contact" class="topbar__cta magnetic" data-scroll-to>Contact</a>
     </nav>
   </header>
-
-  <nav class="progress-rail" aria-hidden="true">
-    <button class="progress-rail__dot magnetic" data-dot="intro" aria-label="Aller à l'introduction"></button>
-    <button class="progress-rail__dot magnetic" data-dot="about" aria-label="Aller à la section à propos"></button>
-    <button class="progress-rail__dot magnetic" data-dot="skills" aria-label="Aller aux compétences"></button>
-    <button class="progress-rail__dot magnetic" data-dot="work" aria-label="Aller aux créations"></button>
-    <button class="progress-rail__dot magnetic" data-dot="contact" aria-label="Aller au contact"></button>
-  </nav>
-
-  <div class="scroll-cue" id="scrollCue">
-    <span class="scroll-cue__line"></span>
-    Scroll
-  </div>
 
   <main>
 
     <!-- SCÈNE 1 — INTRO -->
-    <section id="intro" class="scene scene--intro" data-scene="1">
-      <div class="scene__inner">
-        <span class="eyebrow" data-assemble="top">Portfolio — Métiers du Multimédia et de l'Internet</span>
-        <h1 class="intro__title">
-          <span data-assemble="left">Léa Vergnenegre,</span>
-          <span data-assemble="right"><em>designer</em>.</span>
-        </h1>
-        <p class="intro__sub" data-assemble="bottom">
-          Étudiante en MMI, je conçois des interfaces, des identités visuelles et des expériences
-          numériques où design et technique se rencontrent.
+    <section id="intro" class="hero" data-section="intro">
+      <div class="hero__orb-wrap" aria-hidden="true">
+        <div class="hero__orb"></div>
+        <div class="hero__orb hero__orb--small"></div>
+      </div>
+
+      <div class="hero__top" data-hero-fade>
+        <span>Portfolio</span>
+        <span>BUT Métiers du Multimédia et de l'Internet</span>
+        <span>2025 — 2026</span>
+      </div>
+
+      <h1 class="hero__title">
+        <span class="hero__line hero__line--1">
+          <span data-split="chars">Léa</span>
+          <span class="hero__aside" data-hero-fade>Designer<br />UI/UX · Motion · Vidéo</span>
+        </span>
+        <span class="hero__line hero__line--2"><em data-split="chars">Vergnenegre</em></span>
+      </h1>
+
+      <div class="hero__bottom">
+        <p class="hero__sub" data-hero-fade>
+          Étudiante en MMI, je conçois des interfaces, des identités visuelles et des
+          expériences numériques où design et technique se rencontrent.
         </p>
-        <div class="intro__meta">
-          <div data-assemble="bottom">
-            <strong>2025 — 2026</strong>
-            BUT Métiers du Multimédia et de l'Internet
-          </div>
-          <div data-assemble="bottom">
-            <strong>Basée en France</strong>
-            Ouverte aux stages &amp; projets freelance
-          </div>
+        <div class="hero__status" data-hero-fade>
+          <span class="pulse" aria-hidden="true"></span>
+          Ouverte aux stages &amp; projets freelance
+        </div>
+        <a href="#about" class="hero__scroll magnetic" data-scroll-to data-hero-fade aria-label="Descendre vers la section à propos">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <defs><path id="circlePath" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0" /></defs>
+            <text><textPath href="#circlePath">Défiler · Découvrir · Défiler · Découvrir ·</textPath></text>
+          </svg>
+          <span class="hero__arrow">↓</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- BANDEAU DÉFILANT -->
+    <section class="marquee" aria-label="Domaines">
+      <div class="marquee__row">
+        <div class="marquee__inner">
+          <span>Identité visuelle</span><i>✦</i><span>UI / UX design</span><i>✦</i><span>Motion design</span><i>✦</i><span>Vidéo</span><i>✦</i><span>Développement web</span><i>✦</i><span>Photographie</span><i>✦</i>
+          <span aria-hidden="true">Identité visuelle</span><i>✦</i><span aria-hidden="true">UI / UX design</span><i>✦</i><span aria-hidden="true">Motion design</span><i>✦</i><span aria-hidden="true">Vidéo</span><i>✦</i><span aria-hidden="true">Développement web</span><i>✦</i><span aria-hidden="true">Photographie</span><i>✦</i>
+        </div>
+      </div>
+      <div class="marquee__row marquee__row--outline" aria-hidden="true">
+        <div class="marquee__inner">
+          <span>Figma</span><i>✦</i><span>Illustrator</span><i>✦</i><span>After Effects</span><i>✦</i><span>Premiere Pro</span><i>✦</i><span>HTML · CSS · JS</span><i>✦</i><span>Lightroom</span><i>✦</i>
+          <span>Figma</span><i>✦</i><span>Illustrator</span><i>✦</i><span>After Effects</span><i>✦</i><span>Premiere Pro</span><i>✦</i><span>HTML · CSS · JS</span><i>✦</i><span>Lightroom</span><i>✦</i>
         </div>
       </div>
     </section>
 
     <!-- SCÈNE 2 — À PROPOS -->
-    <section id="about" class="scene scene--about" data-scene="2">
-      <span class="scene__index" aria-hidden="true">02</span>
-      <div class="scene__inner about">
-        <div class="about__portrait" data-assemble="left">
-          <!-- Remplacer par : <img src="assets/img/avatar/lea.jpg" alt="Portrait de Léa" /> -->
-          Photo de Léa
-        </div>
-        <div>
-          <span class="eyebrow" data-assemble="right">À propos</span>
-          <h2 data-assemble="right" data-wipe>Le multimédia comme terrain de jeu.</h2>
-          <p data-assemble="right">
-            Curieuse et créative, j'aime autant <strong>dessiner une identité de marque</strong>
-            que <strong>coder une interface</strong> ou <strong>monter une vidéo</strong>. Le MMI m'a
-            appris à porter un projet de A à Z : du brief client au pixel final.
+    <section id="about" class="about" data-section="about">
+      <div class="about__grid">
+        <figure class="about__portrait">
+          <div class="about__portrait-inner">
+            <!-- Remplacer par : <img src="assets/img/avatar/lea.jpg" alt="Portrait de Léa" /> -->
+            <span>Photo de Léa</span>
+          </div>
+          <figcaption>Léa Vergnenegre — designer</figcaption>
+        </figure>
+
+        <div class="about__content">
+          <span class="eyebrow" data-reveal>À propos</span>
+          <p class="about__manifesto" data-split="words">
+            Curieuse et créative, j'aime autant <em>dessiner une identité de marque</em> que
+            <em>coder une interface</em> ou <em>monter une vidéo</em>.
           </p>
-          <p data-assemble="right">
+          <p class="about__text" data-reveal>
+            Le MMI m'a appris à porter un projet de A à Z : du brief client au pixel final.
             Je cherche à créer des expériences qui ont du sens, à la croisée du design, de
-            l'image et du code — avec toujours un souci du détail et de la cohérence visuelle.
+            l'image et du code, avec toujours un souci du détail et de la cohérence visuelle.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- SCÈNE 3 — COMPÉTENCES -->
-    <section id="skills" class="scene scene--skills" data-scene="3">
-      <span class="scene__index" aria-hidden="true">03</span>
-      <div class="scene__inner">
-        <div class="skills__head">
-          <div>
-            <span class="eyebrow" data-assemble="top">Ce que je fais</span>
-            <h2 data-assemble="top" data-wipe>Compétences &amp; outils</h2>
+    <!-- SCÈNE 3 — COMPÉTENCES (cartes empilées) -->
+    <section id="skills" class="skills" data-section="skills">
+      <div class="section-head">
+        <span class="eyebrow" data-reveal>Ce que je fais</span>
+        <h2 data-split="chars">Compétences &amp; outils</h2>
+        <p data-reveal>Six terrains de jeu, du print au digital. Les cartes s'empilent au fil du scroll.</p>
+      </div>
+
+      <div class="stack">
+        <article class="stack-card" style="--i: 0">
+          <div class="stack-card__inner">
+            <div class="stack-card__text">
+              <span class="stack-card__count">1 / 6</span>
+              <h3>Identité visuelle</h3>
+              <p>Logotypes, chartes graphiques et direction artistique : donner à une marque une voix qu'on reconnaît au premier regard.</p>
+              <ul class="tags"><li>Illustrator</li><li>InDesign</li><li>Typographie</li></ul>
+            </div>
+            <div class="spec spec--type" aria-hidden="true">
+              <span class="spec-type__aa">Aa</span>
+              <div class="spec-type__swatches"><i></i><i></i><i></i><i></i></div>
+              <span class="spec-type__meta">Fraunces · Italique 400</span>
+            </div>
           </div>
-          <p data-assemble="top">
-            Une palette de compétences transversales, du print au digital.
-          </p>
+          <span class="stack-card__shade" aria-hidden="true"></span>
+        </article>
+
+        <article class="stack-card" style="--i: 1">
+          <div class="stack-card__inner">
+            <div class="stack-card__text">
+              <span class="stack-card__count">2 / 6</span>
+              <h3>UI / UX design</h3>
+              <p>Wireframes, maquettes et prototypes : des interfaces claires, pensées pour la personne qui les utilise.</p>
+              <ul class="tags"><li>Figma</li><li>Prototypage</li><li>Design system</li></ul>
+            </div>
+            <div class="spec spec--ui" aria-hidden="true">
+              <div class="ui-win">
+                <div class="ui-win__bar"><i></i><i></i><i></i></div>
+                <div class="ui-win__body">
+                  <span class="ui-block ui-block--hero"></span>
+                  <span class="ui-block"></span><span class="ui-block"></span><span class="ui-block"></span>
+                  <span class="ui-btn"></span>
+                </div>
+                <span class="ui-cursor"></span>
+              </div>
+            </div>
+          </div>
+          <span class="stack-card__shade" aria-hidden="true"></span>
+        </article>
+
+        <article class="stack-card" style="--i: 2">
+          <div class="stack-card__inner">
+            <div class="stack-card__text">
+              <span class="stack-card__count">3 / 6</span>
+              <h3>Motion design</h3>
+              <p>Animations 2D, habillages vidéo et micro-interactions : faire bouger les choses avec intention.</p>
+              <ul class="tags"><li>After Effects</li><li>Courbes d'accélération</li><li>Lottie</li></ul>
+            </div>
+            <div class="spec spec--motion" aria-hidden="true">
+              <svg viewBox="0 0 300 200">
+                <line class="spec-motion__grid" x1="20" y1="180" x2="280" y2="180" />
+                <line class="spec-motion__grid" x1="20" y1="20" x2="20" y2="180" />
+                <line class="spec-motion__handle" x1="20" y1="180" x2="140" y2="175" />
+                <line class="spec-motion__handle" x1="280" y1="20" x2="170" y2="22" />
+                <path id="easeCurve" class="spec-motion__curve" d="M20,180 C140,175 170,22 280,20" />
+                <circle class="spec-motion__knob" cx="140" cy="175" r="5" />
+                <circle class="spec-motion__knob" cx="170" cy="22" r="5" />
+                <circle class="spec-motion__ball" r="8">
+                  <animateMotion dur="2.4s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.75;1" calcMode="linear">
+                    <mpath href="#easeCurve" />
+                  </animateMotion>
+                </circle>
+              </svg>
+              <span class="spec-motion__label">cubic-bezier(0.16, 1, 0.3, 1)</span>
+            </div>
+          </div>
+          <span class="stack-card__shade" aria-hidden="true"></span>
+        </article>
+
+        <article class="stack-card" style="--i: 3">
+          <div class="stack-card__inner">
+            <div class="stack-card__text">
+              <span class="stack-card__count">4 / 6</span>
+              <h3>Vidéo &amp; montage</h3>
+              <p>Tournage, montage et étalonnage : raconter une histoire au rythme juste, image par image.</p>
+              <ul class="tags"><li>Premiere Pro</li><li>DaVinci Resolve</li><li>Étalonnage</li></ul>
+            </div>
+            <div class="spec spec--video" aria-hidden="true">
+              <div class="spec-video__screen"><span class="spec-video__tc">00:00:12:08</span></div>
+              <div class="spec-video__timeline">
+                <div class="spec-video__track"><i style="--w: 34%"></i><i style="--w: 22%"></i><i style="--w: 30%"></i></div>
+                <div class="spec-video__track spec-video__track--b"><i style="--w: 18%"></i><i style="--w: 46%"></i></div>
+                <div class="spec-video__track spec-video__track--a"><i style="--w: 70%"></i></div>
+                <span class="spec-video__head"></span>
+              </div>
+            </div>
+          </div>
+          <span class="stack-card__shade" aria-hidden="true"></span>
+        </article>
+
+        <article class="stack-card" style="--i: 4">
+          <div class="stack-card__inner">
+            <div class="stack-card__text">
+              <span class="stack-card__count">5 / 6</span>
+              <h3>Développement web</h3>
+              <p>HTML, CSS et JavaScript : intégrer ses propres maquettes, en responsive, sans perdre un pixel en route.</p>
+              <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+            </div>
+            <div class="spec spec--code" aria-hidden="true">
+              <pre><span class="c-tag">&lt;section</span> <span class="c-attr">class</span>=<span class="c-str">"hero"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;h1&gt;</span>Léa<span class="c-tag">&lt;/h1&gt;</span>
+<span class="c-tag">&lt;/section&gt;</span>
+
+<span class="c-sel">.hero</span> {
+  <span class="c-attr">display</span>: grid;
+  <span class="c-attr">min-height</span>: 100svh;
+}<span class="spec-code__caret"></span></pre>
+            </div>
+          </div>
+          <span class="stack-card__shade" aria-hidden="true"></span>
+        </article>
+
+        <article class="stack-card" style="--i: 5">
+          <div class="stack-card__inner">
+            <div class="stack-card__text">
+              <span class="stack-card__count">6 / 6</span>
+              <h3>Photographie</h3>
+              <p>Prise de vue, retouche et direction artistique photo : chercher la lumière avant le réglage.</p>
+              <ul class="tags"><li>Lightroom</li><li>Photoshop</li><li>Studio</li></ul>
+            </div>
+            <div class="spec spec--photo" aria-hidden="true">
+              <span class="spec-photo__corner spec-photo__corner--tl"></span>
+              <span class="spec-photo__corner spec-photo__corner--tr"></span>
+              <span class="spec-photo__corner spec-photo__corner--bl"></span>
+              <span class="spec-photo__corner spec-photo__corner--br"></span>
+              <span class="spec-photo__focus"></span>
+              <span class="spec-photo__meta">f/1.8 · 1/250 s · ISO 100</span>
+            </div>
+          </div>
+          <span class="stack-card__shade" aria-hidden="true"></span>
+        </article>
+      </div>
+    </section>
+
+    <!-- MÉTHODE -->
+    <section class="method" aria-labelledby="methodTitle">
+      <div class="section-head">
+        <span class="eyebrow" data-reveal>Méthode</span>
+        <h2 id="methodTitle" data-split="chars">Du brief au pixel final.</h2>
+      </div>
+      <div class="steps">
+        <span class="steps__line" aria-hidden="true"><span class="steps__fill"></span></span>
+        <ol class="steps__list">
+        <li class="step">
+          <span class="step__dot" aria-hidden="true"></span>
+          <span class="step__num">Étape 1</span>
+          <h3>Écouter</h3>
+          <p>Comprendre le brief, la cible et les contraintes avant de dessiner quoi que ce soit.</p>
+        </li>
+        <li class="step">
+          <span class="step__dot" aria-hidden="true"></span>
+          <span class="step__num">Étape 2</span>
+          <h3>Explorer</h3>
+          <p>Recherches, moodboards et pistes graphiques : ouvrir large avant de choisir.</p>
+        </li>
+        <li class="step">
+          <span class="step__dot" aria-hidden="true"></span>
+          <span class="step__num">Étape 3</span>
+          <h3>Concevoir</h3>
+          <p>Maquettes, prototypes et itérations, testés tôt et ajustés souvent.</p>
+        </li>
+        <li class="step">
+          <span class="step__dot" aria-hidden="true"></span>
+          <span class="step__num">Étape 4</span>
+          <h3>Livrer</h3>
+          <p>Fichiers propres, intégration et déclinaisons prêtes à l'emploi.</p>
+        </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- SCÈNE 4 — CRÉATIONS (défilement horizontal sur ordinateur) -->
+    <section id="work" class="work" data-section="work">
+      <div class="work__head">
+        <div>
+          <span class="eyebrow" data-reveal>Sélection de projets</span>
+          <h2 data-split="chars">Créations</h2>
         </div>
-        <div class="skills-grid">
-          <div class="skill-card" data-assemble="left">
-            <span class="skill-card__num">01</span>
-            <h3>Identité visuelle</h3>
-            <p>Logotypes, chartes graphiques, direction artistique.</p>
+        <div class="work__progress" aria-hidden="true">
+          <span class="work__counter"><b id="workCurrent">01</b> / 04</span>
+          <span class="work__bar"><span id="workBar"></span></span>
+        </div>
+      </div>
+
+      <!-- GRILLE DE PROJETS : dupliquer une .work-card par création -->
+      <div class="work__track">
+        <a href="#" class="work-card work-card--soon" data-cursor="Bientôt">
+          <div class="work-card__thumb" style="--tint: #1a4a30">
+            <span class="work-card__ghost" aria-hidden="true">Identité</span>
+            <span class="work-card__badge">Bientôt</span>
           </div>
-          <div class="skill-card" data-assemble="top">
-            <span class="skill-card__num">02</span>
-            <h3>UI / UX Design</h3>
-            <p>Wireframes, maquettes Figma, prototypage d'interfaces.</p>
+          <div class="work-card__body">
+            <div>
+              <span class="work-card__tag">Identité visuelle</span>
+              <span class="work-card__title">Projet à venir</span>
+            </div>
+            <span class="work-card__arrow" aria-hidden="true">↗</span>
           </div>
-          <div class="skill-card" data-assemble="right">
-            <span class="skill-card__num">03</span>
-            <h3>Motion design</h3>
-            <p>Animations 2D, habillages vidéo, micro-interactions.</p>
+        </a>
+        <a href="#" class="work-card work-card--soon" data-cursor="Bientôt">
+          <div class="work-card__thumb" style="--tint: #15402c">
+            <span class="work-card__ghost" aria-hidden="true">Interface</span>
+            <span class="work-card__badge">Bientôt</span>
           </div>
-          <div class="skill-card" data-assemble="left">
-            <span class="skill-card__num">04</span>
-            <h3>Vidéo &amp; montage</h3>
-            <p>Tournage, montage, étalonnage, motion capture légère.</p>
+          <div class="work-card__body">
+            <div>
+              <span class="work-card__tag">UI / UX</span>
+              <span class="work-card__title">Projet à venir</span>
+            </div>
+            <span class="work-card__arrow" aria-hidden="true">↗</span>
           </div>
-          <div class="skill-card" data-assemble="top">
-            <span class="skill-card__num">05</span>
-            <h3>Développement web</h3>
-            <p>HTML, CSS, JavaScript, intégration responsive.</p>
+        </a>
+        <a href="#" class="work-card work-card--soon" data-cursor="Bientôt">
+          <div class="work-card__thumb" style="--tint: #1d5236">
+            <span class="work-card__ghost" aria-hidden="true">Motion</span>
+            <span class="work-card__badge">Bientôt</span>
           </div>
-          <div class="skill-card" data-assemble="right">
-            <span class="skill-card__num">06</span>
-            <h3>Photographie</h3>
-            <p>Prise de vue, retouche, direction artistique photo.</p>
+          <div class="work-card__body">
+            <div>
+              <span class="work-card__tag">Motion design</span>
+              <span class="work-card__title">Projet à venir</span>
+            </div>
+            <span class="work-card__arrow" aria-hidden="true">↗</span>
           </div>
+        </a>
+        <a href="#" class="work-card work-card--soon" data-cursor="Bientôt">
+          <div class="work-card__thumb" style="--tint: #123826">
+            <span class="work-card__ghost" aria-hidden="true">Vidéo</span>
+            <span class="work-card__badge">Bientôt</span>
+          </div>
+          <div class="work-card__body">
+            <div>
+              <span class="work-card__tag">Vidéo</span>
+              <span class="work-card__title">Projet à venir</span>
+            </div>
+            <span class="work-card__arrow" aria-hidden="true">↗</span>
+          </div>
+        </a>
+        <div class="work-end">
+          <p>D'autres projets arrivent bientôt.</p>
+          <a href="#contact" class="work-end__link magnetic" data-scroll-to>Parlons du vôtre →</a>
         </div>
       </div>
     </section>
 
-    <!-- SCÈNE 4 — CRÉATIONS -->
-    <section id="work" class="scene scene--work" data-scene="4">
-      <span class="scene__index" aria-hidden="true">04</span>
-      <div class="scene__inner">
-        <div class="work__head">
-          <span class="eyebrow" data-assemble="top">Sélection de projets</span>
-          <h2 data-assemble="top" data-wipe>Créations</h2>
-          <p data-assemble="top">
-            Les projets de Léa arrivent bientôt ici — chaque carte ci-dessous est prête à
-            accueillir une création (image, lien, description).
-          </p>
+    <!-- SCÈNE 5 — CONTACT (rideau ivoire) -->
+    <section id="contact" class="contact" data-section="contact">
+      <div class="contact__panel">
+        <span class="eyebrow eyebrow--dark" data-reveal>Travaillons ensemble</span>
+        <h2 class="contact__title" data-split="chars">Une idée, un stage, un projet&nbsp;?</h2>
+
+        <div class="contact__row">
+          <a href="mailto:contact@example.com" class="contact__btn magnetic" data-cursor="Écrire">
+            <span>Écrivez-moi</span>
+          </a>
+          <div class="contact__mail">
+            <span class="contact__label">E-mail</span>
+            <span class="contact__address" id="mailAddress">contact@example.com</span>
+            <button type="button" class="contact__copy" id="copyMail">Copier l'adresse</button>
+          </div>
         </div>
 
-        <!-- GRILLE DE PROJETS : dupliquer une .work-card par création envoyée -->
-        <div class="work-grid">
-          <a href="#" class="work-card work-card--soon" data-assemble="left">
-            <div class="work-card__thumb" style="--thumb: linear-gradient(155deg, #153524, #0b1a13)"></div>
-            <div class="work-card__body">
-              <div>
-                <span class="work-card__tag">Identité visuelle</span>
-                <span class="work-card__title">Projet à venir</span>
-              </div>
-              <span class="work-card__arrow">↗</span>
-            </div>
-          </a>
-          <a href="#" class="work-card work-card--soon" data-assemble="right">
-            <div class="work-card__thumb" style="--thumb: linear-gradient(155deg, #12291b, #0b1a13)"></div>
-            <div class="work-card__body">
-              <div>
-                <span class="work-card__tag">UI / UX</span>
-                <span class="work-card__title">Projet à venir</span>
-              </div>
-              <span class="work-card__arrow">↗</span>
-            </div>
-          </a>
-          <a href="#" class="work-card work-card--soon" data-assemble="left">
-            <div class="work-card__thumb" style="--thumb: linear-gradient(155deg, #0f2e1f, #0b1a13)"></div>
-            <div class="work-card__body">
-              <div>
-                <span class="work-card__tag">Motion design</span>
-                <span class="work-card__title">Projet à venir</span>
-              </div>
-              <span class="work-card__arrow">↗</span>
-            </div>
-          </a>
-          <a href="#" class="work-card work-card--soon" data-assemble="right">
-            <div class="work-card__thumb" style="--thumb: linear-gradient(155deg, #183c28, #0b1a13)"></div>
-            <div class="work-card__body">
-              <div>
-                <span class="work-card__tag">Vidéo</span>
-                <span class="work-card__title">Projet à venir</span>
-              </div>
-              <span class="work-card__arrow">↗</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- SCÈNE 5 — CONTACT -->
-    <section id="contact" class="scene scene--contact" data-scene="5">
-      <span class="scene__index" aria-hidden="true">05</span>
-      <div class="scene__inner">
-        <span class="eyebrow" data-assemble="top">Travaillons ensemble</span>
-        <h2 class="contact__title" data-assemble="scale">
-          Une idée, un stage,<br />un projet ?
-          <a href="mailto:contact@example.com" class="magnetic">Écrivez-moi.</a>
-        </h2>
         <div class="contact__links">
-          <a href="mailto:contact@example.com" data-assemble="bottom" class="magnetic">contact@example.com</a>
-          <a href="#" target="_blank" rel="noopener" data-assemble="bottom" class="magnetic">LinkedIn</a>
-          <a href="#" target="_blank" rel="noopener" data-assemble="bottom" class="magnetic">Behance</a>
-          <a href="#" target="_blank" rel="noopener" data-assemble="bottom" class="magnetic">Instagram</a>
+          <a href="#" target="_blank" rel="noopener" class="magnetic">LinkedIn ↗</a>
+          <a href="#" target="_blank" rel="noopener" class="magnetic">Behance ↗</a>
+          <a href="#" target="_blank" rel="noopener" class="magnetic">Instagram ↗</a>
         </div>
+
+        <footer class="site-footer">
+          <span>© 2026 Léa Vergnenegre — Portfolio MMI</span>
+          <a href="#intro" data-scroll-to>Retour en haut ↑</a>
+        </footer>
       </div>
     </section>
 
   </main>
 
-  <footer class="site-footer">
-    <span>© 2026 Léa Vergnenegre — Portfolio MMI</span>
-    <span>Fait avec soin</span>
-  </footer>
-
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/vendor/lenis.min.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

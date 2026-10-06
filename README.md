@@ -1,18 +1,30 @@
 # Portfolio Léa
 
-Portfolio MMI en scroll storytelling : chaque section (« scène ») occupe l'écran
-et se révèle progressivement au scroll, inspiré des sites façon
-[terminal-industries.com](https://terminal-industries.com/).
+Portfolio MMI en scroll storytelling, animé avec GSAP + ScrollTrigger et le
+défilement fluide Lenis :
 
-Site 100% statique (HTML / CSS / JS, aucune dépendance à installer), prêt pour
-GitHub Pages.
+- écran de chargement (compteur 000 → 100) puis entrée lettre par lettre du nom ;
+- hero qui se disloque au scroll, orbe lumineux qui suit la souris ;
+- bandeau de compétences dont la vitesse et l'inclinaison suivent le scroll ;
+- manifeste « À propos » qui s'allume mot à mot ;
+- compétences en cartes empilées, chacune avec un visuel animé ;
+- méthode avec une ligne qui se trace au scroll ;
+- créations en défilement horizontal épinglé (grille verticale sur mobile) ;
+- contact en rideau ivoire, boutons magnétiques, curseur personnalisé.
+
+Le mouvement est désactivé si le visiteur a demandé « réduire les animations »,
+et tout le contenu reste lisible si le JavaScript ne charge pas.
+
+Site 100 % statique (HTML / CSS / JS, bibliothèques incluses dans
+`assets/vendor/`, rien à installer), prêt pour GitHub Pages.
 
 ## Structure
 
 ```
-index.html               page unique, 5 scènes : intro, à propos, compétences, créations, contact
-assets/css/style.css     styles, thème sombre, variables de couleur en haut du fichier
-assets/js/main.js        animations au scroll (IntersectionObserver), curseur, navigation
+index.html               page unique : intro, à propos, compétences, méthode, créations, contact
+assets/css/style.css     styles, variables de couleur et de typo en haut du fichier
+assets/js/main.js        animations au scroll (GSAP / ScrollTrigger / Lenis), curseur, navigation
+assets/vendor/           gsap.min.js, ScrollTrigger.min.js (3.12.5), lenis.min.js (1.1.13)
 assets/img/avatar/       photo/portrait de Léa
 assets/img/projets/      visuels des créations
 ```
@@ -20,10 +32,10 @@ assets/img/projets/      visuels des créations
 ## Ajouter une création
 
 Dans `index.html`, section `<!-- SCÈNE 4 — CRÉATIONS -->`, dupliquer un bloc
-`.work-card` :
+`.work-card` (avant le bloc `.work-end`) :
 
 ```html
-<a href="#" class="work-card" data-reveal="scale">
+<a href="lien-du-projet" class="work-card" data-cursor="Voir">
   <div class="work-card__thumb">
     <img src="assets/img/projets/nom-du-fichier.jpg" alt="Description du projet" />
   </div>
@@ -32,17 +44,18 @@ Dans `index.html`, section `<!-- SCÈNE 4 — CRÉATIONS -->`, dupliquer un bloc
       <span class="work-card__tag">Catégorie (ex: Identité visuelle)</span>
       <span class="work-card__title">Titre du projet</span>
     </div>
-    <span class="work-card__arrow">↗</span>
+    <span class="work-card__arrow" aria-hidden="true">↗</span>
   </div>
 </a>
 ```
 
-Retirer la classe `work-card--soon` une fois le visuel ajouté. Déposer les
-images dans `assets/img/projets/`.
+Penser à mettre à jour le compteur « / 04 » dans `.work__counter`.
+
+Déposer les images dans `assets/img/projets/`.
 
 ## Ajouter le portrait
 
-Remplacer le contenu de `.about__portrait` par :
+Remplacer le contenu de `.about__portrait-inner` par :
 
 ```html
 <img src="assets/img/avatar/lea.jpg" alt="Portrait de Léa" />
@@ -50,8 +63,8 @@ Remplacer le contenu de `.about__portrait` par :
 
 ## Personnaliser les couleurs
 
-Variables en haut de `assets/css/style.css` (`--accent`, `--accent-2`, et les
-`--scene-*` utilisées pour la transition de fond entre les sections).
+Variables en haut de `assets/css/style.css` (`--ink`, `--ivory`, `--sage`,
+`--emerald`…).
 
 ## Aperçu local
 
