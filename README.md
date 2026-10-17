@@ -10,7 +10,7 @@ index.html                  page d'accueil : en-tête, accueil, à propos, réal
 projets/projet-exemple.html modèle de page projet (à dupliquer pour chaque projet)
 assets/css/style.css        styles (couleurs et polices en variables en haut du fichier)
 assets/js/main.js           menu mobile + filtres des réalisations
-assets/fonts/               fichier de la police Internet Friends (à ajouter)
+assets/fonts/               police Internet Friends
 assets/img/avatar/          illustrations de l'avatar
 assets/img/projets/         visuels des projets
 ```
@@ -26,17 +26,20 @@ assets/img/projets/         visuels des projets
 | Manuscrit | Nanum Pen Script (Google Fonts)         |
 | Texte     | Archivo Narrow (Google Fonts)           |
 
+## Police et avatar
+
+- **Internet Friends** est dans `assets/fonts/` (`.woff2` + `.ttf`). Elle n'a
+  pas de lettres accentuées : les titres s'écrivent sans accents
+  (« mes realisations »), comme sur la maquette.
+- **Avatar** détouré en WebP transparent dans `assets/img/avatar/`
+  (`avatar-tete.webp`, `avatar-buste.webp`, `favicon.png`).
+
 ## À faire pour finaliser
 
-1. **Police Internet Friends** : elle n'est pas sur Google Fonts. Copier le
-   fichier dans `assets/fonts/` en le renommant `internet-friends.ttf` (ou
-   `.otf` / `.woff2`). Tant qu'il manque, les titres s'affichent en Archivo Narrow.
-2. **Avatar** : exporter depuis Figma en PNG fond transparent et remplacer
-   - `assets/img/avatar/avatar-tete.png` (logo + accueil)
-   - `assets/img/avatar/avatar-buste.png` (section à propos)
-3. **Textes** : remplacer tout ce qui est entre crochets `[...]` dans `index.html`.
-4. **Contact** : adresse mail, liens réseaux, et déposer le CV en
+1. **Textes** : remplacer tout ce qui est entre crochets `[...]` dans `index.html`.
+2. **Contact** : adresse mail, liens réseaux, et déposer le CV en
    `assets/cv-lea-vergnenegre.pdf`.
+3. **Projets** : voir ci-dessous.
 
 ## Ajouter un projet
 

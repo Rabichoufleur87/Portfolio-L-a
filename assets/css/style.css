@@ -14,13 +14,12 @@
    ========================================================================== */
 
 /* 1. POLICES & VARIABLES ---------------------------------------------------
-   Internet Friends n'est pas sur Google Fonts : dépose le fichier de la police
-   dans assets/fonts/ (voir README). En attendant, Archivo Narrow prend le relais. */
+   Internet Friends est hébergée dans assets/fonts/. Elle n'a pas de lettres
+   accentuées : les titres s'écrivent donc sans accents (« mes realisations »). */
 @font-face {
   font-family: "Internet Friends";
   src: url("../fonts/internet-friends.woff2") format("woff2"),
-       url("../fonts/internet-friends.ttf") format("truetype"),
-       url("../fonts/internet-friends.otf") format("opentype");
+       url("../fonts/internet-friends.ttf") format("truetype");
   font-display: swap;
 }
 
@@ -244,14 +243,13 @@ button {
 .hero__year,
 .hero__by {
   position: absolute;
-  bottom: -1.6rem;
+  bottom: -1rem;
   font-size: clamp(1.3rem, 2.4vw, 2rem);
   color: var(--olive-fonce);
 }
 
 .hero__year {
   left: 0.25rem;
-  bottom: -2.4rem;
 }
 
 .hero__by {
