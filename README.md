@@ -1,66 +1,54 @@
-# Portfolio Léa
+# Portfolio Léa Vergnenegre
 
-Portfolio MMI en scroll storytelling : chaque section (« scène ») occupe l'écran
-et se révèle progressivement au scroll, inspiré des sites façon
-[terminal-industries.com](https://terminal-industries.com/).
-
-Site 100% statique (HTML / CSS / JS, aucune dépendance à installer), prêt pour
-GitHub Pages.
+Portfolio de projets universitaires et personnels. Site 100 % statique
+(HTML / CSS / JS, rien à installer), prêt pour GitHub Pages.
 
 ## Structure
 
 ```
-index.html               page unique, 5 scènes : intro, à propos, compétences, créations, contact
-assets/css/style.css     styles, thème sombre, variables de couleur en haut du fichier
-assets/js/main.js        animations au scroll (IntersectionObserver), curseur, navigation
-assets/img/avatar/       photo/portrait de Léa
-assets/img/projets/      visuels des créations
+index.html                  page d'accueil : en-tête, accueil, à propos, réalisations, contact
+projets/projet-exemple.html modèle de page projet (à dupliquer pour chaque projet)
+assets/css/style.css        styles (couleurs et polices en variables en haut du fichier)
+assets/js/main.js           menu mobile + filtres des réalisations
+assets/fonts/               fichier de la police Internet Friends (à ajouter)
+assets/img/avatar/          illustrations de l'avatar
+assets/img/projets/         visuels des projets
 ```
 
-## Ajouter une création
+## Charte
 
-Dans `index.html`, section `<!-- SCÈNE 4 — CRÉATIONS -->`, dupliquer un bloc
-`.work-card` :
+| Rôle      | Valeur                                  |
+|-----------|-----------------------------------------|
+| Lilas     | `#C598BC`                               |
+| Ivoire    | `#FFFDF5`                               |
+| Olive     | `#58623D`                               |
+| Titres    | Internet Friends                        |
+| Manuscrit | Nanum Pen Script (Google Fonts)         |
+| Texte     | Archivo Narrow (Google Fonts)           |
 
-```html
-<a href="#" class="work-card" data-reveal="scale">
-  <div class="work-card__thumb">
-    <img src="assets/img/projets/nom-du-fichier.jpg" alt="Description du projet" />
-  </div>
-  <div class="work-card__body">
-    <div>
-      <span class="work-card__tag">Catégorie (ex: Identité visuelle)</span>
-      <span class="work-card__title">Titre du projet</span>
-    </div>
-    <span class="work-card__arrow">↗</span>
-  </div>
-</a>
-```
+## À faire pour finaliser
 
-Retirer la classe `work-card--soon` une fois le visuel ajouté. Déposer les
-images dans `assets/img/projets/`.
+1. **Police Internet Friends** : elle n'est pas sur Google Fonts. Copier le
+   fichier dans `assets/fonts/` en le renommant `internet-friends.ttf` (ou
+   `.otf` / `.woff2`). Tant qu'il manque, les titres s'affichent en Archivo Narrow.
+2. **Avatar** : exporter depuis Figma en PNG fond transparent et remplacer
+   - `assets/img/avatar/avatar-tete.png` (logo + accueil)
+   - `assets/img/avatar/avatar-buste.png` (section à propos)
+3. **Textes** : remplacer tout ce qui est entre crochets `[...]` dans `index.html`.
+4. **Contact** : adresse mail, liens réseaux, et déposer le CV en
+   `assets/cv-lea-vergnenegre.pdf`.
 
-## Ajouter le portrait
+## Ajouter un projet
 
-Remplacer le contenu de `.about__portrait` par :
-
-```html
-<img src="assets/img/avatar/lea.jpg" alt="Portrait de Léa" />
-```
-
-## Personnaliser les couleurs
-
-Variables en haut de `assets/css/style.css` (`--accent`, `--accent-2`, et les
-`--scene-*` utilisées pour la transition de fond entre les sections).
+1. Dupliquer `projets/projet-exemple.html` (ex. `projets/affiche-festival.html`)
+   et remplir les textes et images.
+2. Dans `index.html`, section « Mes réalisations », dupliquer un bloc
+   `<article class="card">` et adapter :
+   - `data-category="universitaire"` ou `data-category="personnel"` (pour les filtres)
+   - le lien `href` vers la nouvelle page
+   - l'image : remplacer `<span class="hand">visuel à venir</span>` par
+     `<img src="assets/img/projets/mon-image.jpg" alt="Description" />`
 
 ## Aperçu local
 
-Ouvrir `index.html` dans un navigateur, ou servir le dossier avec :
-
-```
-python3 -m http.server
-```
-
-## Publier sur GitHub Pages
-
-Réglages du repo → Pages → Source : branche `main`, dossier `/ (root)`.
+Ouvrir `index.html` dans un navigateur, ou lancer `python3 -m http.server`.

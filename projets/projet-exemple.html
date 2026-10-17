@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Titre du projet — Léa Vergnenegre</title>
+  <meta name="description" content="Présentation du projet : contexte, démarche et résultat." />
+  <link rel="icon" href="../assets/img/avatar/avatar-tete.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+
+  <!--
+    MODÈLE DE PAGE PROJET
+    Pour chaque projet : dupliquer ce fichier (ex. projets/identite-cafe.html),
+    remplir les textes et images, puis faire pointer la carte de index.html dessus.
+  -->
+
+  <header class="header">
+    <div class="header__inner">
+      <a href="../index.html" class="header__logo" aria-label="Retour à l'accueil">
+        <img src="../assets/img/avatar/avatar-tete.png" alt="" width="56" height="56" />
+      </a>
+
+      <button class="header__burger" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+        <span></span><span></span>
+      </button>
+
+      <nav class="nav" id="menu" aria-label="Navigation principale">
+        <a href="../index.html#a-propos" class="btn btn--lilas">À propos</a>
+        <a href="../index.html#realisations" class="btn btn--lilas">Mes réalisations</a>
+        <a href="../index.html#contact" class="btn btn--lilas">Me contacter</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="project-hero">
+      <a href="../index.html#realisations" class="back hand">← toutes mes réalisations</a>
+      <br />
+      <span class="card__tag">Universitaire</span>
+      <h1 class="title">Titre du projet</h1>
+      <p class="project-hero__lead">
+        En une ou deux phrases : de quoi parle le projet et quel était l'enjeu.
+      </p>
+    </section>
+
+    <div class="project-cover">
+      <!-- <img src="../assets/img/projets/nom-du-projet-cover.jpg" alt="Description du visuel" /> -->
+      <span class="hand">visuel principal</span>
+    </div>
+
+    <dl class="project-meta">
+      <div><dt>contexte</dt><dd>[Cours / SAÉ / perso]</dd></div>
+      <div><dt>année</dt><dd>2025</dd></div>
+      <div><dt>mon rôle</dt><dd>[Seule / en équipe de 4…]</dd></div>
+      <div><dt>outils</dt><dd>[Figma, Procreate…]</dd></div>
+    </dl>
+
+    <div class="project-body">
+      <section>
+        <h2>Le brief</h2>
+        <p>Quelle était la demande ? Pour qui ? Avec quelles contraintes (temps, format, cible) ?</p>
+      </section>
+      <section>
+        <h2>Ma démarche</h2>
+        <p>Recherches, croquis, pistes abandonnées, choix de couleurs et de typos… Montre comment tu as réfléchi, pas seulement le résultat.</p>
+      </section>
+      <section>
+        <h2>Le résultat</h2>
+        <p>Présente le rendu final et ce qu'il apporte.</p>
+      </section>
+    </div>
+
+    <div class="project-gallery">
+      <figure><span class="hand">image 1</span></figure>
+      <figure><span class="hand">image 2</span></figure>
+      <figure><span class="hand">image 3</span></figure>
+      <figure><span class="hand">image 4</span></figure>
+    </div>
+
+    <div class="project-body">
+      <section>
+        <h2>Ce que j'en retiens</h2>
+        <p>Ce que tu as appris, ce que tu ferais différemment. Les jurys et recruteurs adorent cette partie.</p>
+      </section>
+    </div>
+
+    <nav class="project-nav" aria-label="Navigation entre projets">
+      <a href="../index.html#realisations">← Retour aux réalisations</a>
+      <a href="#">Projet suivant →</a>
+    </nav>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© 2026 Léa Vergnenegre</span>
+      <a href="#" class="hand">retour en haut ↑</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

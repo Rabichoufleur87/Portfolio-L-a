@@ -3,231 +3,208 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Léa Vergnenegre — Designer</title>
-  <meta name="description" content="Portfolio de Léa Vergnenegre, designer et étudiante en Métiers du Multimédia et de l'Internet — identité visuelle, UI/UX, motion design, vidéo." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23071309%22/><text x=%2250%22 y=%2268%22 font-size=%2260%22 fill=%22%2357e39a%22 text-anchor=%22middle%22 font-family=%22serif%22 font-style=%22italic%22>L</text></svg>" />
+  <title>Portfolio — Léa Vergnenegre</title>
+  <meta name="description" content="Portfolio de Léa Vergnenegre : projets universitaires et personnels." />
+  <link rel="icon" href="assets/img/avatar/avatar-tete.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 
-  <div class="cursor-dot" aria-hidden="true"></div>
-  <div class="cursor-glow" aria-hidden="true"></div>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
 
-  <div class="scroll-line" aria-hidden="true">
-    <div class="scroll-line__fill" id="scrollLineFill"></div>
-  </div>
+  <!-- ===================== EN-TÊTE ===================== -->
+  <header class="header">
+    <div class="header__inner">
+      <a href="#accueil" class="header__logo" aria-label="Retour à l'accueil">
+        <img src="assets/img/avatar/avatar-tete.png" alt="" width="56" height="56" />
+      </a>
 
-  <div class="scroll-progress" aria-hidden="true">
-    <div class="scroll-progress__fill" id="scrollProgressFill"></div>
-  </div>
+      <button class="header__burger" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+        <span></span><span></span>
+      </button>
 
-  <header class="topbar">
-    <a href="#intro" class="topbar__name">Léa Vergnenegre</a>
-    <nav class="topbar__nav">
-      <a href="#about" data-nav="about">À propos</a>
-      <a href="#skills" data-nav="skills">Compétences</a>
-      <a href="#work" data-nav="work">Créations</a>
-      <a href="#contact" class="topbar__cta magnetic">Contact</a>
-    </nav>
+      <nav class="nav" id="menu" aria-label="Navigation principale">
+        <a href="#a-propos" class="btn btn--lilas">À propos</a>
+        <a href="#realisations" class="btn btn--lilas">Mes réalisations</a>
+        <a href="#contact" class="btn btn--lilas">Me contacter</a>
+      </nav>
+    </div>
   </header>
 
-  <nav class="progress-rail" aria-hidden="true">
-    <button class="progress-rail__dot magnetic" data-dot="intro" aria-label="Aller à l'introduction"></button>
-    <button class="progress-rail__dot magnetic" data-dot="about" aria-label="Aller à la section à propos"></button>
-    <button class="progress-rail__dot magnetic" data-dot="skills" aria-label="Aller aux compétences"></button>
-    <button class="progress-rail__dot magnetic" data-dot="work" aria-label="Aller aux créations"></button>
-    <button class="progress-rail__dot magnetic" data-dot="contact" aria-label="Aller au contact"></button>
-  </nav>
+  <main id="contenu">
 
-  <div class="scroll-cue" id="scrollCue">
-    <span class="scroll-cue__line"></span>
-    Scroll
-  </div>
-
-  <main>
-
-    <!-- SCÈNE 1 — INTRO -->
-    <section id="intro" class="scene scene--intro" data-scene="1">
-      <div class="scene__inner">
-        <span class="eyebrow" data-assemble="top">Portfolio — Métiers du Multimédia et de l'Internet</span>
-        <h1 class="intro__title">
-          <span data-assemble="left">Léa Vergnenegre,</span>
-          <span data-assemble="right"><em>designer</em>.</span>
-        </h1>
-        <p class="intro__sub" data-assemble="bottom">
-          Étudiante en MMI, je conçois des interfaces, des identités visuelles et des expériences
-          numériques où design et technique se rencontrent.
-        </p>
-        <div class="intro__meta">
-          <div data-assemble="bottom">
-            <strong>2025 — 2026</strong>
-            BUT Métiers du Multimédia et de l'Internet
-          </div>
-          <div data-assemble="bottom">
-            <strong>Basée en France</strong>
-            Ouverte aux stages &amp; projets freelance
-          </div>
+    <!-- ===================== 1. ACCUEIL ===================== -->
+    <section id="accueil" class="hero">
+      <div class="hero__inner">
+        <img class="hero__avatar" src="assets/img/avatar/avatar-tete.png" alt="Autoportrait illustré de Léa" width="600" height="600" />
+        <div class="hero__title-wrap">
+          <h1 class="hero__title">Portfolio</h1>
+          <span class="hero__year hand">2026</span>
+          <span class="hero__by hand">By Léa Vergnenegre</span>
         </div>
       </div>
     </section>
 
-    <!-- SCÈNE 2 — À PROPOS -->
-    <section id="about" class="scene scene--about" data-scene="2">
-      <span class="scene__index" aria-hidden="true">02</span>
-      <div class="scene__inner about">
-        <div class="about__portrait" data-assemble="left">
-          <!-- Remplacer par : <img src="assets/img/avatar/lea.jpg" alt="Portrait de Léa" /> -->
-          Photo de Léa
+    <!-- ===================== 2. À PROPOS ===================== -->
+    <section id="a-propos" class="about">
+      <div class="container about__inner">
+        <div class="about__card">
+          <h2 class="title title--light">À propos de moi</h2>
+
+          <p class="about__intro">
+            Je m'appelle Léa, j'ai XX ans et je suis étudiante en <strong>[ta formation]</strong>
+            à <strong>[ton école / ta ville]</strong>.
+          </p>
+          <p>
+            Ici, présente-toi en 3 ou 4 phrases : ce qui te passionne, ce que tu aimes créer,
+            ton univers (illustration, design, vidéo…) et ce que tu recherches
+            (stage, alternance, projets).
+          </p>
+
+          <ul class="about__facts">
+            <li><span class="hand">formation</span> [Nom du diplôme] — 2024 › 2027</li>
+            <li><span class="hand">basée à</span> [Ville]</li>
+            <li><span class="hand">je recherche</span> [Un stage de X semaines à partir de…]</li>
+          </ul>
+
+          <div class="about__tools">
+            <h3 class="hand">mes outils</h3>
+            <ul class="tags">
+              <li>Figma</li>
+              <li>Procreate</li>
+              <li>Photoshop</li>
+              <li>Illustrator</li>
+              <li>Premiere Pro</li>
+              <li>HTML / CSS</li>
+            </ul>
+          </div>
         </div>
-        <div>
-          <span class="eyebrow" data-assemble="right">À propos</span>
-          <h2 data-assemble="right" data-wipe>Le multimédia comme terrain de jeu.</h2>
-          <p data-assemble="right">
-            Curieuse et créative, j'aime autant <strong>dessiner une identité de marque</strong>
-            que <strong>coder une interface</strong> ou <strong>monter une vidéo</strong>. Le MMI m'a
-            appris à porter un projet de A à Z : du brief client au pixel final.
-          </p>
-          <p data-assemble="right">
-            Je cherche à créer des expériences qui ont du sens, à la croisée du design, de
-            l'image et du code — avec toujours un souci du détail et de la cohérence visuelle.
-          </p>
+
+        <img class="about__avatar" src="assets/img/avatar/avatar-buste.png" alt="" width="600" height="760" />
+      </div>
+    </section>
+
+    <!-- ===================== 3. MES RÉALISATIONS ===================== -->
+    <section id="realisations" class="works">
+      <div class="container">
+        <h2 class="title">Mes réalisations</h2>
+        <p class="works__sub hand">projets universitaires &amp; personnels</p>
+
+        <div class="filters" role="group" aria-label="Filtrer les projets">
+          <button class="filter is-active" data-filter="tous" aria-pressed="true">Tous</button>
+          <button class="filter" data-filter="universitaire" aria-pressed="false">Universitaires</button>
+          <button class="filter" data-filter="personnel" aria-pressed="false">Personnels</button>
+        </div>
+
+        <!--
+          Une carte = un projet. Pour en ajouter un : dupliquer un <article class="card">,
+          changer data-category ("universitaire" ou "personnel"), l'image, le titre et le lien.
+        -->
+        <div class="grid">
+
+          <article class="card" data-category="universitaire">
+            <a href="projets/projet-exemple.html" class="card__link">
+              <div class="card__thumb"><span class="hand">visuel à venir</span></div>
+              <div class="card__body">
+                <span class="card__tag">Universitaire</span>
+                <h3 class="card__title">Titre du projet</h3>
+                <p class="card__desc">Une phrase qui résume le projet et ton rôle.</p>
+                <span class="card__meta">Identité visuelle · 2025</span>
+              </div>
+            </a>
+          </article>
+
+          <article class="card" data-category="universitaire">
+            <a href="projets/projet-exemple.html" class="card__link">
+              <div class="card__thumb"><span class="hand">visuel à venir</span></div>
+              <div class="card__body">
+                <span class="card__tag">Universitaire</span>
+                <h3 class="card__title">Titre du projet</h3>
+                <p class="card__desc">Une phrase qui résume le projet et ton rôle.</p>
+                <span class="card__meta">Webdesign · 2025</span>
+              </div>
+            </a>
+          </article>
+
+          <article class="card" data-category="personnel">
+            <a href="projets/projet-exemple.html" class="card__link">
+              <div class="card__thumb"><span class="hand">visuel à venir</span></div>
+              <div class="card__body">
+                <span class="card__tag card__tag--perso">Personnel</span>
+                <h3 class="card__title">Titre du projet</h3>
+                <p class="card__desc">Une phrase qui résume le projet et ton rôle.</p>
+                <span class="card__meta">Illustration · 2026</span>
+              </div>
+            </a>
+          </article>
+
+          <article class="card" data-category="universitaire">
+            <a href="projets/projet-exemple.html" class="card__link">
+              <div class="card__thumb"><span class="hand">visuel à venir</span></div>
+              <div class="card__body">
+                <span class="card__tag">Universitaire</span>
+                <h3 class="card__title">Titre du projet</h3>
+                <p class="card__desc">Une phrase qui résume le projet et ton rôle.</p>
+                <span class="card__meta">Vidéo · 2025</span>
+              </div>
+            </a>
+          </article>
+
+          <article class="card" data-category="personnel">
+            <a href="projets/projet-exemple.html" class="card__link">
+              <div class="card__thumb"><span class="hand">visuel à venir</span></div>
+              <div class="card__body">
+                <span class="card__tag card__tag--perso">Personnel</span>
+                <h3 class="card__title">Titre du projet</h3>
+                <p class="card__desc">Une phrase qui résume le projet et ton rôle.</p>
+                <span class="card__meta">Photographie · 2026</span>
+              </div>
+            </a>
+          </article>
+
+          <article class="card" data-category="universitaire">
+            <a href="projets/projet-exemple.html" class="card__link">
+              <div class="card__thumb"><span class="hand">visuel à venir</span></div>
+              <div class="card__body">
+                <span class="card__tag">Universitaire</span>
+                <h3 class="card__title">Titre du projet</h3>
+                <p class="card__desc">Une phrase qui résume le projet et ton rôle.</p>
+                <span class="card__meta">Motion design · 2026</span>
+              </div>
+            </a>
+          </article>
+
         </div>
       </div>
     </section>
 
-    <!-- SCÈNE 3 — COMPÉTENCES -->
-    <section id="skills" class="scene scene--skills" data-scene="3">
-      <span class="scene__index" aria-hidden="true">03</span>
-      <div class="scene__inner">
-        <div class="skills__head">
-          <div>
-            <span class="eyebrow" data-assemble="top">Ce que je fais</span>
-            <h2 data-assemble="top" data-wipe>Compétences &amp; outils</h2>
-          </div>
-          <p data-assemble="top">
-            Une palette de compétences transversales, du print au digital.
-          </p>
-        </div>
-        <div class="skills-grid">
-          <div class="skill-card" data-assemble="left">
-            <span class="skill-card__num">01</span>
-            <h3>Identité visuelle</h3>
-            <p>Logotypes, chartes graphiques, direction artistique.</p>
-          </div>
-          <div class="skill-card" data-assemble="top">
-            <span class="skill-card__num">02</span>
-            <h3>UI / UX Design</h3>
-            <p>Wireframes, maquettes Figma, prototypage d'interfaces.</p>
-          </div>
-          <div class="skill-card" data-assemble="right">
-            <span class="skill-card__num">03</span>
-            <h3>Motion design</h3>
-            <p>Animations 2D, habillages vidéo, micro-interactions.</p>
-          </div>
-          <div class="skill-card" data-assemble="left">
-            <span class="skill-card__num">04</span>
-            <h3>Vidéo &amp; montage</h3>
-            <p>Tournage, montage, étalonnage, motion capture légère.</p>
-          </div>
-          <div class="skill-card" data-assemble="top">
-            <span class="skill-card__num">05</span>
-            <h3>Développement web</h3>
-            <p>HTML, CSS, JavaScript, intégration responsive.</p>
-          </div>
-          <div class="skill-card" data-assemble="right">
-            <span class="skill-card__num">06</span>
-            <h3>Photographie</h3>
-            <p>Prise de vue, retouche, direction artistique photo.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- ===================== 4. CONTACT ===================== -->
+    <section id="contact" class="contact">
+      <div class="container contact__inner">
+        <h2 class="title title--light">Me contacter</h2>
+        <p class="contact__lead hand">une idée, un stage, une collab ? écris-moi !</p>
 
-    <!-- SCÈNE 4 — CRÉATIONS -->
-    <section id="work" class="scene scene--work" data-scene="4">
-      <span class="scene__index" aria-hidden="true">04</span>
-      <div class="scene__inner">
-        <div class="work__head">
-          <span class="eyebrow" data-assemble="top">Sélection de projets</span>
-          <h2 data-assemble="top" data-wipe>Créations</h2>
-          <p data-assemble="top">
-            Les projets de Léa arrivent bientôt ici — chaque carte ci-dessous est prête à
-            accueillir une création (image, lien, description).
-          </p>
-        </div>
+        <a href="mailto:ton.adresse@mail.com" class="btn btn--lilas btn--big">ton.adresse@mail.com</a>
 
-        <!-- GRILLE DE PROJETS : dupliquer une .work-card par création envoyée -->
-        <div class="work-grid">
-          <a href="#" class="work-card work-card--soon" data-assemble="left">
-            <div class="work-card__thumb" style="--thumb: linear-gradient(155deg, #153524, #0b1a13)"></div>
-            <div class="work-card__body">
-              <div>
-                <span class="work-card__tag">Identité visuelle</span>
-                <span class="work-card__title">Projet à venir</span>
-              </div>
-              <span class="work-card__arrow">↗</span>
-            </div>
-          </a>
-          <a href="#" class="work-card work-card--soon" data-assemble="right">
-            <div class="work-card__thumb" style="--thumb: linear-gradient(155deg, #12291b, #0b1a13)"></div>
-            <div class="work-card__body">
-              <div>
-                <span class="work-card__tag">UI / UX</span>
-                <span class="work-card__title">Projet à venir</span>
-              </div>
-              <span class="work-card__arrow">↗</span>
-            </div>
-          </a>
-          <a href="#" class="work-card work-card--soon" data-assemble="left">
-            <div class="work-card__thumb" style="--thumb: linear-gradient(155deg, #0f2e1f, #0b1a13)"></div>
-            <div class="work-card__body">
-              <div>
-                <span class="work-card__tag">Motion design</span>
-                <span class="work-card__title">Projet à venir</span>
-              </div>
-              <span class="work-card__arrow">↗</span>
-            </div>
-          </a>
-          <a href="#" class="work-card work-card--soon" data-assemble="right">
-            <div class="work-card__thumb" style="--thumb: linear-gradient(155deg, #183c28, #0b1a13)"></div>
-            <div class="work-card__body">
-              <div>
-                <span class="work-card__tag">Vidéo</span>
-                <span class="work-card__title">Projet à venir</span>
-              </div>
-              <span class="work-card__arrow">↗</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- SCÈNE 5 — CONTACT -->
-    <section id="contact" class="scene scene--contact" data-scene="5">
-      <span class="scene__index" aria-hidden="true">05</span>
-      <div class="scene__inner">
-        <span class="eyebrow" data-assemble="top">Travaillons ensemble</span>
-        <h2 class="contact__title" data-assemble="scale">
-          Une idée, un stage,<br />un projet ?
-          <a href="mailto:contact@example.com" class="magnetic">Écrivez-moi.</a>
-        </h2>
-        <div class="contact__links">
-          <a href="mailto:contact@example.com" data-assemble="bottom" class="magnetic">contact@example.com</a>
-          <a href="#" target="_blank" rel="noopener" data-assemble="bottom" class="magnetic">LinkedIn</a>
-          <a href="#" target="_blank" rel="noopener" data-assemble="bottom" class="magnetic">Behance</a>
-          <a href="#" target="_blank" rel="noopener" data-assemble="bottom" class="magnetic">Instagram</a>
-        </div>
+        <ul class="contact__links">
+          <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="#" target="_blank" rel="noopener">Behance</a></li>
+          <li><a href="assets/cv-lea-vergnenegre.pdf" target="_blank" rel="noopener">Mon CV (PDF)</a></li>
+        </ul>
       </div>
     </section>
 
   </main>
 
-  <footer class="site-footer">
-    <span>© 2026 Léa Vergnenegre — Portfolio MMI</span>
-    <span>Fait avec soin</span>
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© 2026 Léa Vergnenegre</span>
+      <a href="#accueil" class="hand">retour en haut ↑</a>
+    </div>
   </footer>
 
   <script src="assets/js/main.js"></script>
