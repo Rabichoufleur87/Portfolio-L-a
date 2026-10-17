@@ -9,7 +9,7 @@ Portfolio de projets universitaires et personnels. Site 100 % statique
 index.html                  page d'accueil : en-tête, accueil, à propos, réalisations, contact
 projets/projet-exemple.html modèle de page projet (à dupliquer pour chaque projet)
 assets/css/style.css        styles (couleurs et polices en variables en haut du fichier)
-assets/js/main.js           menu mobile + filtres des réalisations
+assets/js/main.js           menu mobile, filtres, animations (intro, scroll, parallaxe)
 assets/fonts/               police Internet Friends
 assets/img/avatar/          illustrations de l'avatar
 assets/img/projets/         visuels des projets
@@ -51,6 +51,18 @@ assets/img/projets/         visuels des projets
    - le lien `href` vers la nouvelle page
    - l'image : remplacer `<span class="hand">visuel à venir</span>` par
      `<img src="assets/img/projets/mon-image.jpg" alt="Description" />`
+
+## Animations
+
+- **Accueil** : l'avatar arrive puis se balance, « Portfolio » s'écrit lettre
+  par lettre (et les lettres sautent au survol), la signature se trace.
+- **Au scroll** : ajouter `data-reveal="up"` (ou `left`, `right`, `scale`,
+  `rise`) sur n'importe quel élément pour le faire apparaître. Les éléments qui
+  entrent en même temps arrivent en cascade.
+- **Gribouillis sous les titres** : copier le `<svg class="squiggle">` sous un titre.
+- **Avatar « à propos »** : remonte au scroll et se penche vers la souris.
+- Si le visiteur a activé « réduire les animations » dans son système, tout
+  s'affiche directement, sans mouvement.
 
 ## Aperçu local
 
