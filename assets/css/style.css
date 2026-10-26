@@ -636,6 +636,167 @@ button {
   color: var(--olive);
 }
 
+/* Projet Rock en Seine ---------------------------------------------------- */
+.project-hero__note {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--olive-clair);
+}
+
+.res-h2 {
+  margin-bottom: 1rem;
+  font-family: var(--font-titre);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  line-height: 1;
+  color: var(--olive);
+  text-transform: lowercase;
+}
+
+.res-identity {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  margin-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.res-identity__text {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.res-logo img {
+  width: min(100%, 440px);
+  margin-inline: auto;
+  border-radius: 50%;
+  box-shadow: 10px 10px 0 var(--lilas);
+}
+
+.swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.swatches li {
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-manuscrite);
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--olive);
+}
+
+.swatches li::before {
+  content: "";
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 2px solid var(--olive);
+  background: var(--c);
+}
+
+.res-campaign {
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+  text-align: center;
+}
+
+.res-campaign__lead {
+  max-width: 620px;
+  margin: 0 auto 2.25rem;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  list-style: none;
+  counter-reset: step;
+  text-align: left;
+}
+
+.steps li {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 0.35rem;
+  padding: 1.4rem 1.25rem 1.5rem;
+  border-radius: var(--radius);
+  background: var(--olive);
+  color: var(--ivoire);
+  font-size: 0.98rem;
+  counter-increment: step;
+}
+
+/* le numéro reflète l'ordre réel de publication */
+.steps li::after {
+  content: counter(step);
+  position: absolute;
+  top: 0.9rem;
+  right: 1.1rem;
+  font-family: var(--font-titre);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--lilas);
+}
+
+.steps__when {
+  font-size: 1.45rem;
+  color: var(--lilas);
+}
+
+.steps strong {
+  font-size: 1.25rem;
+}
+
+.res-feed {
+  max-width: 760px;
+  margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+}
+
+.res-feed img {
+  border-radius: var(--radius);
+  border: 2px solid var(--olive);
+}
+
+.res-feed figcaption,
+.project-gallery--posts figcaption {
+  margin-top: 0.6rem;
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--olive);
+}
+
+.project-gallery--posts {
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(0.9rem, 2vw, 1.5rem);
+}
+
+.project-gallery--posts figure {
+  display: block;
+  aspect-ratio: auto;
+  overflow: visible;
+  background: none;
+  border-radius: 0;
+}
+
+.project-gallery--posts img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+
+.project-gallery--posts figure:hover img {
+  transform: translateY(-6px) rotate(-1.5deg);
+  box-shadow: 8px 8px 0 var(--lilas);
+}
+
 /* 10. RESPONSIVE ----------------------------------------------------------- */
 @media (max-width: 960px) {
   .grid {
@@ -643,6 +804,14 @@ button {
   }
 
   .project-meta {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-gallery--posts {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -720,6 +889,19 @@ button {
   .grid,
   .project-gallery {
     grid-template-columns: 1fr;
+  }
+
+  .project-gallery--posts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .res-identity,
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .res-logo img {
+    width: min(80%, 320px);
   }
 
   .hero {
