@@ -178,6 +178,11 @@ button {
   font-size: 0.9rem;
 }
 
+.tags--outline li {
+  border: 2px solid var(--olive);
+  background: transparent;
+}
+
 /* 4. EN-TÊTE --------------------------------------------------------------- */
 .header {
   position: sticky;
@@ -592,6 +597,10 @@ button {
   gap: 2.5rem;
   max-width: 760px;
   margin: 0 auto clamp(3rem, 6vw, 5rem);
+}
+
+.project-body p + p {
+  margin-top: 0.8rem;
 }
 
 .project-body h2 {
