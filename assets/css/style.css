@@ -636,14 +636,14 @@ button {
   color: var(--olive);
 }
 
-/* Projet Rock en Seine ---------------------------------------------------- */
+/* Blocs des pages projet ---------------------------------------------------- */
 .project-hero__note {
   margin-top: 0.75rem;
   font-size: 0.95rem;
   color: var(--olive-clair);
 }
 
-.res-h2 {
+.project-h2 {
   margin-bottom: 1rem;
   font-family: var(--font-titre);
   font-weight: 400;
@@ -653,7 +653,7 @@ button {
   text-transform: lowercase;
 }
 
-.res-identity {
+.project-split {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
   align-items: center;
@@ -661,17 +661,21 @@ button {
   margin-block: clamp(3.5rem, 7vw, 6rem);
 }
 
-.res-identity__text {
+.project-split__text {
   display: grid;
   gap: 1rem;
   min-width: 0;
 }
 
-.res-logo img {
+.project-visual img {
   width: min(100%, 440px);
   margin-inline: auto;
-  border-radius: 50%;
+  border-radius: var(--radius);
   box-shadow: 10px 10px 0 var(--lilas);
+}
+
+.project-visual--round img {
+  border-radius: 50%;
 }
 
 .swatches {
@@ -700,12 +704,12 @@ button {
   background: var(--c);
 }
 
-.res-campaign {
+.project-section {
   margin-bottom: clamp(3rem, 6vw, 5rem);
   text-align: center;
 }
 
-.res-campaign__lead {
+.project-section__lead {
   max-width: 620px;
   margin: 0 auto 2.25rem;
 }
@@ -753,17 +757,17 @@ button {
   font-size: 1.25rem;
 }
 
-.res-feed {
+.project-feature {
   max-width: 760px;
   margin: 0 auto clamp(2.5rem, 5vw, 4rem);
 }
 
-.res-feed img {
+.project-feature img {
   border-radius: var(--radius);
   border: 2px solid var(--olive);
 }
 
-.res-feed figcaption,
+.project-feature figcaption,
 .project-gallery--posts figcaption {
   margin-top: 0.6rem;
   text-align: center;
@@ -795,6 +799,72 @@ button {
 .project-gallery--posts figure:hover img {
   transform: translateY(-6px) rotate(-1.5deg);
   box-shadow: 8px 8px 0 var(--lilas);
+}
+
+/* Captures d'écran d'un site, présentées dans une fenêtre de navigateur */
+.screens {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  max-width: 980px;
+  margin: 0 auto clamp(3rem, 6vw, 5rem);
+  counter-reset: screen;
+  text-align: left;
+}
+
+.screen {
+  display: grid;
+  gap: 1rem;
+  counter-increment: screen;
+}
+
+.screen__frame {
+  overflow: hidden;
+  border: 2px solid var(--olive);
+  border-radius: var(--radius);
+  background: var(--ivoire);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+
+.screen:hover .screen__frame {
+  transform: translateY(-4px);
+  box-shadow: 8px 8px 0 var(--lilas);
+}
+
+.screen__bar {
+  display: flex;
+  gap: 6px;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 2px solid var(--olive);
+  background: var(--lilas-pale);
+}
+
+.screen__bar span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--olive);
+}
+
+.screen figcaption {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 1rem;
+  align-items: baseline;
+}
+
+/* le numéro suit l'ordre des sections sur le site */
+.screen figcaption::before {
+  content: counter(screen);
+  grid-row: span 2;
+  font-family: var(--font-titre);
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--lilas);
+}
+
+.screen figcaption strong {
+  font-size: 1.25rem;
+  color: var(--olive);
 }
 
 /* 10. RESPONSIVE ----------------------------------------------------------- */
@@ -895,12 +965,12 @@ button {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .res-identity,
+  .project-split,
   .steps {
     grid-template-columns: 1fr;
   }
 
-  .res-logo img {
+  .project-visual img {
     width: min(80%, 320px);
   }
 
