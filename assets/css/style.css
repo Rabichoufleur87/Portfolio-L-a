@@ -683,6 +683,15 @@ button {
   box-shadow: 10px 10px 0 var(--lilas);
 }
 
+.project-visual figcaption {
+  margin-top: 1.1rem;
+  text-align: center;
+  font-family: var(--font-manuscrite);
+  font-size: 1.4rem;
+  line-height: 1.1;
+  color: var(--olive);
+}
+
 .project-visual--round img {
   border-radius: 50%;
 }
