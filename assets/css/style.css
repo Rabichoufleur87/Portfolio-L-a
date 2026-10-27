@@ -572,7 +572,7 @@ button {
 
 .project-meta {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1rem;
   margin-block: 2.5rem;
   padding: 1.5rem;
@@ -814,6 +814,17 @@ button {
   transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
 }
 
+.project-gallery--print {
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 0;
+}
+
+.project-gallery--print img {
+  aspect-ratio: auto;
+  border-radius: 4px;
+  box-shadow: 0 12px 30px rgba(46, 52, 32, 0.16);
+}
+
 .project-gallery--posts figure:hover img {
   transform: translateY(-6px) rotate(-1.5deg);
   box-shadow: 8px 8px 0 var(--lilas);
@@ -902,6 +913,10 @@ button {
   .project-gallery--posts {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .project-gallery--print {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 760px) {
@@ -981,6 +996,12 @@ button {
 
   .project-gallery--posts {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-gallery--print {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin-inline: auto;
   }
 
   .project-split,
