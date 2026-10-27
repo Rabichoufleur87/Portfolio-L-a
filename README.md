@@ -7,7 +7,8 @@ Portfolio de projets universitaires et personnels. Site 100 % statique
 
 ```
 index.html                  page d'accueil : en-tête, accueil, à propos, réalisations, contact
-projets/projet-exemple.html modèle de page projet (à dupliquer pour chaque projet)
+projets/                    une page par projet (rock-en-seine, cantine-suzette, lido,
+                            illustrations) + projet-exemple.html, modèle à dupliquer
 assets/css/style.css        styles (couleurs et polices en variables en haut du fichier)
 assets/js/main.js           menu mobile, filtres, animations (intro, scroll, parallaxe)
 assets/fonts/               police Internet Friends
@@ -34,12 +35,12 @@ assets/img/projets/         visuels des projets
 - **Avatar** détouré en WebP transparent dans `assets/img/avatar/`
   (`avatar-tete.webp`, `avatar-buste.webp`, `favicon.png`).
 
-## À faire pour finaliser
+## Contenu
 
-1. **Textes** : remplacer tout ce qui est entre crochets `[...]` dans `index.html`.
-2. **Contact** : adresse mail, liens réseaux, et déposer le CV en
-   `assets/cv-lea-vergnenegre.pdf`.
-3. **Projets** : voir ci-dessous.
+- Présentation, outils, e-mail, LinkedIn et Instagram sont renseignés dans
+  `index.html`.
+- Pour proposer un CV à télécharger : déposer le PDF dans `assets/` et ajouter
+  un lien dans la liste `.contact__links`.
 
 ## Ajouter un projet
 
