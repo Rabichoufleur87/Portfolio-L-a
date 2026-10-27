@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le Lido, rétrospective animation japonaise — Léa Vergnenegre</title>
+  <meta name="description" content="Landing page de la rétrospective animation japonaise du cinéma Le Lido, à Limoges. Projet universitaire." />
+  <link rel="icon" href="../assets/img/avatar/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="header">
+    <div class="header__inner">
+      <a href="../index.html" class="header__logo" aria-label="Retour à l'accueil">
+        <img src="../assets/img/avatar/avatar-tete.webp" alt="" width="56" height="57" />
+      </a>
+
+      <button class="header__burger" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+        <span></span><span></span>
+      </button>
+
+      <nav class="nav" id="menu" aria-label="Navigation principale">
+        <a href="../index.html#a-propos" class="btn btn--lilas">À propos</a>
+        <a href="../index.html#realisations" class="btn btn--lilas">Mes réalisations</a>
+        <a href="../index.html#contact" class="btn btn--lilas">Me contacter</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" class="container">
+
+    <!-- ===================== EN-TÊTE DU PROJET ===================== -->
+    <section class="project-hero">
+      <a href="../index.html#realisations" class="back hand">← toutes mes réalisations</a>
+      <br />
+      <span class="card__tag">Universitaire</span>
+      <h1 class="title" data-reveal="up">le lido</h1>
+      <p class="project-hero__lead" data-reveal="up">
+        La landing page de la rétrospective animation japonaise du cinéma Le Lido, à
+        Limoges : une page pour plonger dans l'univers des films et réserver sa séance.
+      </p>
+      <p class="project-hero__note" data-reveal="up">
+        Projet étudiant, sans lien officiel avec le cinéma. Les films et les photos
+        appartiennent à leurs auteurs.
+      </p>
+    </section>
+
+    <dl class="project-meta" data-reveal="up">
+      <div><dt>année</dt><dd>2026</dd></div>
+      <div><dt>format</dt><dd>Landing page événementielle</dd></div>
+      <div><dt>thème</dt><dd>Rétrospective animation japonaise</dd></div>
+    </dl>
+
+    <div class="project-body">
+      <section data-reveal="up">
+        <h2>le brief</h2>
+        <p>
+          Le Lido, cinéma de Limoges, organise cinq semaines de rétrospectives autour de
+          films cultes : animation japonaise, David Lynch, sport, science-fiction et
+          comédies musicales. Pour chacune, il veut une landing page qui plonge le
+          visiteur dans l'ambiance de la thématique et lui donne toutes les infos
+          pratiques pour venir et réserver.
+        </p>
+        <p>
+          J'ai choisi l'animation japonaise. La page devait réunir cinq sections (en-tête
+          immersif, présentation de l'univers, sélection des films, calendrier des
+          projections, localisation) et renvoyer vers la billetterie du cinéma, sans
+          paiement sur la page. Le projet suivait les étapes d'un vrai projet : recherche
+          et moodboards, wireframes, puis maquette prototypée.
+        </p>
+      </section>
+    </div>
+
+    <!-- ===================== LA DIRECTION ARTISTIQUE ===================== -->
+    <section class="project-split">
+      <figure class="project-visual" data-reveal="scale">
+        <img src="../assets/img/projets/lido/illustration.webp" alt="Visuel d'en-tête : les personnages de plusieurs films d'animation japonaise réunis, avec Totoro en arrière-plan" width="1000" height="684" loading="lazy" />
+        <figcaption class="hand">le visuel d'en-tête</figcaption>
+      </figure>
+
+      <div class="project-split__text">
+        <h2 class="project-h2" data-reveal="up">la direction artistique</h2>
+        <p data-reveal="up">
+          Le brief laissait la charte libre : la page n'avait pas à reprendre l'identité
+          du cinéma, seulement à faire entrer dans l'univers de la rétrospective.
+        </p>
+        <p data-reveal="up">
+          Un fond anthracite et une barre de navigation presque noire, des titres en
+          capitales blanches très grasses, des images cernées d'un filet gris clair et un
+          rouge brique réservé aux actions : billetterie, séances, découverte des films.
+        </p>
+
+        <ul class="swatches" data-reveal="up" aria-label="Palette de couleurs">
+          <li style="--c: #444040"><span>anthracite</span></li>
+          <li style="--c: #262626"><span>noir</span></li>
+          <li style="--c: #B04841"><span>brique</span></li>
+          <li style="--c: #48211F"><span>bordeaux</span></li>
+          <li style="--c: #FFFFFF"><span>blanc</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== LA PAGE ===================== -->
+    <section class="project-section">
+      <h2 class="project-h2" data-reveal="up">la page</h2>
+      <p class="project-section__lead" data-reveal="up">
+        Les écrans dans l'ordre du scroll, de l'en-tête au calendrier des séances.
+      </p>
+
+      <div class="screens">
+        <figure class="screen" data-reveal="up">
+          <div class="screen__frame">
+            <div class="screen__bar" aria-hidden="true"><span></span><span></span><span></span></div>
+            <img src="../assets/img/projets/lido/en-tete.webp" alt="En-tête : logo du cinéma Lido, navigation, bouton Billetterie rouge et titre « Rétrospective animation japonaise » sur un visuel de personnages" width="1400" height="752" loading="lazy" />
+          </div>
+          <figcaption>
+            <strong>En-tête</strong>
+            <span>Le logo du Lido, la navigation, un bouton billetterie toujours visible et un visuel qui réunit les personnages de la rétrospective.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="screen" data-reveal="up">
+          <div class="screen__frame">
+            <div class="screen__bar" aria-hidden="true"><span></span><span></span><span></span></div>
+            <img src="../assets/img/projets/lido/univers.webp" alt="Section « Découvrez l'univers » : texte de présentation et mosaïque de portraits de réalisateurs, dont Hayao Miyazaki" width="1400" height="733" loading="lazy" />
+          </div>
+          <figcaption>
+            <strong>L'univers</strong>
+            <span>Hayao Miyazaki, Mamoru Oshii, Katsuhiro Ōtomo et Makoto Shinkai présentés en mosaïque de portraits, avec un bouton vers les films.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="screen" data-reveal="up">
+          <div class="screen__frame">
+            <div class="screen__bar" aria-hidden="true"><span></span><span></span><span></span></div>
+            <img src="../assets/img/projets/lido/film.webp" alt="Fiche du film Princesse Mononoké : titre, réalisateur et synopsis sur une image de San et du loup dans la forêt" width="1400" height="779" loading="lazy" />
+          </div>
+          <figcaption>
+            <strong>Les films</strong>
+            <span>Une fiche par film : titre, réalisateur et synopsis sur une image du film.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="screen" data-reveal="up">
+          <div class="screen__frame">
+            <div class="screen__bar" aria-hidden="true"><span></span><span></span><span></span></div>
+            <img src="../assets/img/projets/lido/calendrier.webp" alt="Calendrier : jours du lundi 20 au vendredi 24, affiche de Princesse Mononoké, synopsis et quatre horaires de séance" width="952" height="861" loading="lazy" />
+          </div>
+          <figcaption>
+            <strong>Le calendrier</strong>
+            <span>On choisit un jour, puis un horaire de séance qui mène à la réservation sur le site du cinéma.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <nav class="project-nav" aria-label="Navigation entre projets">
+      <a href="cantine-suzette.html">← La cantine de Suzette</a>
+      <a href="../index.html#realisations">Voir les autres projets →</a>
+    </nav>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© 2026 Léa Vergnenegre</span>
+      <a href="#" class="hand">retour en haut ↑</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

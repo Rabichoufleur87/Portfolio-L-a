@@ -859,6 +859,10 @@ button {
   box-shadow: 8px 8px 0 var(--lilas);
 }
 
+.screen__frame img {
+  width: 100%;
+}
+
 .screen__bar {
   display: flex;
   gap: 6px;
