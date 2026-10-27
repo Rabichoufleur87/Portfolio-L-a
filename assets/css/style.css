@@ -935,8 +935,11 @@ button {
   transition: box-shadow 0.35s var(--ease), transform 0.35s var(--ease);
 }
 
-.gallery__item img {
+.gallery__item img,
+.gallery__item video {
+  display: block;
   width: 100%;
+  height: auto;
   transition: transform 0.6s var(--ease);
 }
 
@@ -945,7 +948,8 @@ button {
   box-shadow: 8px 8px 0 var(--lilas);
 }
 
-.gallery__item:hover img {
+.gallery__item:hover img,
+.gallery__item:hover video {
   transform: scale(1.04);
 }
 
@@ -1013,7 +1017,12 @@ button {
   min-width: 0;
 }
 
-.lightbox__figure img {
+.lightbox__figure [hidden] {
+  display: none;
+}
+
+.lightbox__figure img,
+.lightbox__figure video {
   max-width: 100%;
   max-height: 80vh;
   object-fit: contain;

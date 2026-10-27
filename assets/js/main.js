@@ -175,6 +175,15 @@ const tick = () => {
 
 requestAnimationFrame(tick);
 
+// Animations de la galerie : pas de lecture automatique si l'utilisateur
+// a demandé de réduire les mouvements
+if (reduceMotion) {
+  document.querySelectorAll(".gallery video").forEach((v) => {
+    v.removeAttribute("autoplay");
+    v.pause();
+  });
+}
+
 // Galerie : visionneuse plein écran, avec flèches du clavier
 const lightbox = document.querySelector(".lightbox");
 const galleryItems = [...document.querySelectorAll("[data-lightbox]")];
@@ -185,13 +194,34 @@ if (lightbox && galleryItems.length) {
   const navButtons = lightbox.querySelectorAll(".lightbox__nav");
   let current = 0;
 
+  const lbVideo = lightbox.querySelector("video");
+
   const show = (index) => {
     current = (index + galleryItems.length) % galleryItems.length;
-    const source = galleryItems[current].querySelector("img");
-    lbImg.src = source.currentSrc || source.src;
-    lbImg.alt = source.alt;
-    lbCaption.textContent = galleryItems[current].dataset.caption || "";
+    const item = galleryItems[current];
+    const video = item.querySelector("video");
+
+    // une animation s'affiche en vidéo, un dessin en image
+    lbVideo.hidden = !video;
+    lbImg.hidden = Boolean(video);
+    lbVideo.pause();
+
+    if (video) {
+      lbVideo.src = video.currentSrc || video.src;
+      lbVideo.poster = video.poster;
+      lbVideo.setAttribute("aria-label", video.getAttribute("aria-label"));
+      lbVideo.controls = reduceMotion;
+      if (!reduceMotion) lbVideo.play().catch(() => {});
+    } else {
+      const source = item.querySelector("img");
+      lbImg.src = source.currentSrc || source.src;
+      lbImg.alt = source.alt;
+    }
+
+    lbCaption.textContent = item.dataset.caption || "";
   };
+
+  lightbox.addEventListener("close", () => lbVideo.pause());
 
   navButtons.forEach((b) => (b.hidden = galleryItems.length < 2));
 

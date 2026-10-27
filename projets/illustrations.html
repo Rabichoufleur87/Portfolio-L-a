@@ -42,7 +42,7 @@
       <span class="card__tag card__tag--perso">Personnel</span>
       <h1 class="title" data-reveal="up">illustrations</h1>
       <p class="project-hero__lead" data-reveal="up">
-        Mes dessins personnels, réalisés sur Adobe Fresco et Illustrator en dehors des cours.
+        Mes dessins et animations personnels, réalisés sur Adobe Fresco et Illustrator en dehors des cours.
       </p>
     </section>
 
@@ -51,6 +51,15 @@
       l'image (src), le texte alternatif (alt) et le titre (data-caption + figcaption).
     -->
     <ul class="gallery" aria-label="Dessins">
+      <li data-reveal="up">
+        <button class="gallery__item" type="button" data-lightbox data-caption="Sieste au salon · animation Fresco">
+          <video poster="../assets/img/projets/illustrations/animation-salon.webp" width="1080" height="1080" autoplay muted loop playsinline aria-label="Animation : un petit chien s'endort sur un fauteuil vert dans un salon, une tasse fume sur la table basse">
+            <source src="../assets/img/projets/illustrations/animation-salon.webm" type="video/webm" />
+            <source src="../assets/img/projets/illustrations/animation-salon.mp4" type="video/mp4" />
+          </video>
+        </button>
+        <p class="gallery__caption"><span class="hand">sieste au salon</span> <span class="gallery__tool">Animation · Fresco</span></p>
+      </li>
       <li data-reveal="up">
         <button class="gallery__item" type="button" data-lightbox data-caption="Autoportrait · Fresco">
           <img src="../assets/img/projets/illustrations/autoportrait.webp" alt="Autoportrait : jeune femme aux cheveux noirs au carré, frange, regard en coin et pull blanc, sur fond vert texturé" width="1600" height="1600" loading="lazy" />
@@ -120,6 +129,7 @@
     <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Dessin précédent">←</button>
     <figure class="lightbox__figure">
       <img src="" alt="" />
+      <video muted loop playsinline hidden></video>
       <figcaption class="hand"></figcaption>
     </figure>
     <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Dessin suivant">→</button>
