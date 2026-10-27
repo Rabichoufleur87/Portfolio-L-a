@@ -950,10 +950,24 @@ button {
 }
 
 .gallery__caption {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.5rem;
   margin-top: 0.5rem;
-  text-align: center;
-  font-size: 1.4rem;
   color: var(--olive);
+}
+
+.gallery__caption .hand {
+  font-size: 1.4rem;
+}
+
+.gallery__tool {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--olive-clair);
 }
 
 .lightbox {
