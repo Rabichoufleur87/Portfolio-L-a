@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Illustrations — Léa Vergnenegre</title>
+  <meta name="description" content="Les dessins personnels de Léa Vergnenegre, réalisés sur Adobe Fresco." />
+  <link rel="icon" href="../assets/img/avatar/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="header">
+    <div class="header__inner">
+      <a href="../index.html" class="header__logo" aria-label="Retour à l'accueil">
+        <img src="../assets/img/avatar/avatar-tete.webp" alt="" width="56" height="57" />
+      </a>
+
+      <button class="header__burger" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+        <span></span><span></span>
+      </button>
+
+      <nav class="nav" id="menu" aria-label="Navigation principale">
+        <a href="../index.html#a-propos" class="btn btn--lilas">À propos</a>
+        <a href="../index.html#realisations" class="btn btn--lilas">Mes réalisations</a>
+        <a href="../index.html#contact" class="btn btn--lilas">Me contacter</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" class="container">
+
+    <section class="project-hero">
+      <a href="../index.html#realisations" class="back hand">← toutes mes réalisations</a>
+      <br />
+      <span class="card__tag card__tag--perso">Personnel</span>
+      <h1 class="title" data-reveal="up">illustrations</h1>
+      <p class="project-hero__lead" data-reveal="up">
+        Mes dessins personnels, réalisés sur Adobe Fresco en dehors des cours.
+      </p>
+    </section>
+
+    <!--
+      GALERIE : un dessin = un <li>. Pour en ajouter un, dupliquer un <li>, changer
+      l'image (src), le texte alternatif (alt) et le titre (data-caption + figcaption).
+    -->
+    <ul class="gallery" aria-label="Dessins">
+      <li data-reveal="up">
+        <button class="gallery__item" type="button" data-lightbox data-caption="Autoportrait">
+          <img src="../assets/img/projets/illustrations/autoportrait.webp" alt="Autoportrait : jeune femme aux cheveux noirs au carré, frange, regard en coin et pull blanc, sur fond vert texturé" width="1600" height="1600" loading="lazy" />
+        </button>
+        <p class="gallery__caption hand">autoportrait</p>
+      </li>
+    </ul>
+
+    <nav class="project-nav" aria-label="Navigation entre projets">
+      <a href="lido.html">← Le Lido</a>
+      <a href="../index.html#realisations">Voir les autres projets →</a>
+    </nav>
+
+  </main>
+
+  <!-- Visionneuse plein écran (ouverte au clic sur un dessin) -->
+  <dialog class="lightbox" aria-label="Dessin agrandi">
+    <button class="lightbox__close" type="button" aria-label="Fermer">×</button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Dessin précédent">←</button>
+    <figure class="lightbox__figure">
+      <img src="" alt="" />
+      <figcaption class="hand"></figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Dessin suivant">→</button>
+  </dialog>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© 2026 Léa Vergnenegre</span>
+      <a href="#" class="hand">retour en haut ↑</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -174,3 +174,46 @@ const tick = () => {
 };
 
 requestAnimationFrame(tick);
+
+// Galerie : visionneuse plein écran, avec flèches du clavier
+const lightbox = document.querySelector(".lightbox");
+const galleryItems = [...document.querySelectorAll("[data-lightbox]")];
+
+if (lightbox && galleryItems.length) {
+  const lbImg = lightbox.querySelector("img");
+  const lbCaption = lightbox.querySelector("figcaption");
+  const navButtons = lightbox.querySelectorAll(".lightbox__nav");
+  let current = 0;
+
+  const show = (index) => {
+    current = (index + galleryItems.length) % galleryItems.length;
+    const source = galleryItems[current].querySelector("img");
+    lbImg.src = source.currentSrc || source.src;
+    lbImg.alt = source.alt;
+    lbCaption.textContent = galleryItems[current].dataset.caption || "";
+  };
+
+  navButtons.forEach((b) => (b.hidden = galleryItems.length < 2));
+
+  galleryItems.forEach((item, i) => {
+    item.addEventListener("click", () => {
+      show(i);
+      lightbox.showModal();
+    });
+  });
+
+  lightbox.querySelector(".lightbox__close").addEventListener("click", () => lightbox.close());
+  lightbox.querySelector(".lightbox__nav--prev").addEventListener("click", () => show(current - 1));
+  lightbox.querySelector(".lightbox__nav--next").addEventListener("click", () => show(current + 1));
+
+  // un clic à côté du dessin referme la visionneuse
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) lightbox.close();
+  });
+
+  lightbox.addEventListener("keydown", (e) => {
+    if (galleryItems.length < 2) return;
+    if (e.key === "ArrowLeft") show(current - 1);
+    if (e.key === "ArrowRight") show(current + 1);
+  });
+}
