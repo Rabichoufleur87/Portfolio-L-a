@@ -1,0 +1,153 @@
+<title>Planche A3 corpus</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Mise en page : schéma A3 à l'échelle (SVG 3508x4961) à gauche, détail des zones et images conseillées à droite */
+:root {
+  --bg: #eceef1; --fg: #14161a; --muted: #5a626d; --card: #ffffff; --line: #cfd4db; --accent: #e4572e;
+  --paper: #ffffff; --ink: #1b1d21; --ink-soft: #7b828c; --ph: #e6e8ec; --ph-line: #aeb4bd;
+  --z1: #f3efe4; --z2: #e3ecf7; --z3: #efe7f5; --z4: #e7f2e6;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #111214; --fg: #eceef1; --muted: #9aa2ad; --card: #1b1d20; --line: #33373d; --accent: #ff7a4d; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #111214; --fg: #eceef1; --muted: #9aa2ad; --card: #1b1d20; --line: #33373d; --accent: #ff7a4d; color-scheme: dark; }
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg); font-family: var(--display); line-height: 1.5; font-size: 15px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 48px;
+}
+.wrap { max-width: 1100px; margin: 0 auto; }
+h1 { font-size: clamp(1.8rem, 4.5vw, 2.8rem); line-height: 1.08; margin: 0 0 8px; font-weight: 800; letter-spacing: -0.02em; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0 0 28px; max-width: 65ch; }
+.layout { display: grid; grid-template-columns: minmax(0, 440px) minmax(0, 1fr); gap: 36px; align-items: start; }
+@media (max-width: 820px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+.sheet { background: var(--paper); border: 1px solid var(--line); box-shadow: 0 6px 24px rgba(0,0,0,.18); }
+.sheet svg { display: block; width: 100%; height: auto; }
+.cap { font-family: var(--mono); font-size: .75rem; color: var(--muted); margin-top: 10px; }
+.zone-fill-1 { fill: var(--z1); } .zone-fill-2 { fill: var(--z2); } .zone-fill-3 { fill: var(--z3); } .zone-fill-4 { fill: var(--z4); }
+.margin { fill: none; stroke: #d0291f; stroke-width: 5; stroke-dasharray: 30 20; }
+.ph { fill: var(--ph); stroke: var(--ph-line); stroke-width: 4; }
+.x { stroke: var(--ph-line); stroke-width: 3; }
+.t { fill: var(--ink); font-family: "Archivo", Arial, sans-serif; }
+.tm { fill: var(--ink-soft); font-family: "IBM Plex Mono", monospace; }
+.bar { fill: var(--ink-soft); opacity: .45; }
+
+section.z { border-top: 3px solid var(--fg); padding: 14px 0 22px; }
+section.z h2 { margin: 0; font-size: 1.15rem; font-weight: 800; }
+.coord { font-family: var(--mono); font-size: .78rem; color: var(--muted); margin: 2px 0 8px; }
+section.z p { margin: 0 0 8px; max-width: 62ch; }
+.imgs { display: grid; gap: 12px; margin: 10px 0 0; padding: 0; list-style: none; }
+.imgs li { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
+.imgs b { display: block; font-size: .72rem; font-family: var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 2px; }
+.imgs .what { font-weight: 600; }
+.imgs .alt { color: var(--muted); font-size: .87rem; margin-top: 4px; }
+.warn { margin-top: 18px; background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 4px; padding: 12px 14px; font-size: .9rem; }
+</style>
+
+<div class="wrap">
+  <h1>Planche A3 de corpus</h1>
+  <p class="sub">Schéma à l'échelle d'une planche A3 portrait (3508 × 4961 px), rempli avec l'exemple de l'Art déco. Les nombres en pixels sont à saisir tels quels dans Figma.</p>
+
+  <div class="layout">
+    <div>
+      <div class="sheet">
+        <svg viewBox="0 0 3508 4961" role="img" aria-label="Schéma de la planche A3 : en-tête, trois images clés, cinq œuvres, pied de page">
+          <rect width="3508" height="4961" fill="var(--paper)"/>
+
+          <!-- Zone 1 : en-tête -->
+          <rect class="zone-fill-1" x="200" y="200" width="3108" height="600"/>
+          <text class="t" x="230" y="470" font-size="250" font-weight="800" letter-spacing="-6">ART DÉCO</text>
+          <text class="tm" x="236" y="570" font-size="64">≈1909 – 1939 · France, puis monde</text>
+          <rect class="bar" x="1778" y="250" width="1480" height="26"/><rect class="bar" x="1778" y="310" width="1400" height="26"/><rect class="bar" x="1778" y="370" width="1480" height="26"/>
+          <rect class="bar" x="1778" y="430" width="1360" height="26"/><rect class="bar" x="1778" y="490" width="1480" height="26"/><rect class="bar" x="1778" y="550" width="1200" height="26"/>
+          <text class="tm" x="1778" y="680" font-size="48">Texte d'environ 300 signes</text>
+          <text class="tm" x="3290" y="150" font-size="44" text-anchor="end" fill="#d0291f" style="fill:#d0291f">marges 200 px</text>
+
+          <!-- Zone 2 : 3 images clés -->
+          <rect class="zone-fill-2" x="200" y="900" width="3108" height="1150"/>
+          <g class="t" font-size="56" font-weight="600">
+            <text x="200" y="975">A · Contexte</text><text x="1252" y="975">B · Technologie</text><text x="2304" y="975">C · Figure</text>
+          </g>
+          <g>
+            <rect class="ph" x="200" y="1000" width="1004" height="900"/><line class="x" x1="200" y1="1000" x2="1204" y2="1900"/><line class="x" x1="1204" y1="1000" x2="200" y2="1900"/>
+            <rect class="ph" x="1252" y="1000" width="1004" height="900"/><line class="x" x1="1252" y1="1000" x2="2256" y2="1900"/><line class="x" x1="2256" y1="1000" x2="1252" y2="1900"/>
+            <rect class="ph" x="2304" y="1000" width="1004" height="900"/><line class="x" x1="2304" y1="1000" x2="3308" y2="1900"/><line class="x" x1="3308" y1="1000" x2="2304" y2="1900"/>
+          </g>
+          <g class="tm" font-size="40">
+            <text x="200" y="1960">Exposition de 1925, Paris</text><text x="200" y="2010">auteur·e · date · source</text>
+            <text x="1252" y="1960">Poste de radio en Bakélite</text><text x="1252" y="2010">auteur·e · date · source</text>
+            <text x="2304" y="1960">Portrait de Cassandre</text><text x="2304" y="2010">auteur·e · date · source</text>
+          </g>
+
+          <!-- Zone 3 : 5 œuvres + case mots-clés -->
+          <rect class="zone-fill-3" x="200" y="2150" width="3108" height="2020"/>
+          <g>
+            <rect class="ph" x="200" y="2150" width="1004" height="780"/><rect class="ph" x="1252" y="2150" width="1004" height="780"/><rect class="ph" x="2304" y="2150" width="1004" height="780"/>
+            <rect class="ph" x="200" y="3180" width="1004" height="780"/><rect class="ph" x="1252" y="3180" width="1004" height="780"/>
+          </g>
+          <g class="t" font-size="150" font-weight="800" fill-opacity=".35" style="fill-opacity:.35">
+            <text x="240" y="2310">1</text><text x="1292" y="2310">2</text><text x="2344" y="2310">3</text><text x="240" y="3340">4</text><text x="1292" y="3340">5</text>
+          </g>
+          <g class="tm" font-size="40">
+            <text x="200" y="2990">Normandie · Cassandre · 1935</text><text x="1252" y="2990">Chrysler Building · 1930</text><text x="2304" y="2990">Cabinet Ruhlmann · 1925</text>
+            <text x="200" y="4020">Victoire · Lalique · 1928</text><text x="1252" y="4020">L'Inhumaine · 1924</text>
+          </g>
+          <rect x="2304" y="3180" width="1004" height="780" fill="var(--paper)" stroke="var(--ph-line)" stroke-width="4" stroke-dasharray="24 14"/>
+          <text class="t" x="2340" y="3280" font-size="52" font-weight="600">Mots-clés</text>
+          <text class="tm" x="2340" y="3350" font-size="42">géométrie · symétrie · luxe</text>
+          <text class="t" x="2340" y="3520" font-size="52" font-weight="600">Nuancier</text>
+          <rect x="2340" y="3560" width="200" height="200" fill="#14110f"/><rect x="2560" y="3560" width="200" height="200" fill="#c9a24a"/><rect x="2780" y="3560" width="200" height="200" fill="#1f6b57"/><rect x="3000" y="3560" width="200" height="200" fill="#f1e9d6" stroke="#aeb4bd" stroke-width="3"/>
+
+          <!-- Zone 4 : pied de page -->
+          <rect class="zone-fill-4" x="200" y="4270" width="3108" height="491"/>
+          <text class="t" x="240" y="4400" font-size="64" font-weight="600">Art déco</text>
+          <text class="tm" x="240" y="4490" font-size="48">Sources principales : à lister ici</text>
+          <text class="tm" x="3270" y="4700" font-size="48" text-anchor="end">MMI 2 · R3.10 · Novembre 2026</text>
+
+          <rect class="margin" x="200" y="200" width="3108" height="4561"/>
+        </svg>
+      </div>
+      <p class="cap">Pointillés rouges : marges de 200 px. Grille de 6 colonnes de 478 px, gouttière de 48 px.</p>
+    </div>
+
+    <div>
+      <section class="z" style="border-top:0;padding-top:0">
+        <h2>3 images clés pour l'Art déco</h2>
+        <p>Je les ai choisies pour ne pas reprendre les œuvres de tes 5 vignettes (Normandie, Chrysler, Ruhlmann, Lalique, L'Inhumaine).</p>
+        <ul class="imgs">
+          <li><b>A · Contexte historique</b><span class="what">L'Exposition internationale des Arts décoratifs et industriels modernes, Paris, 1925</span><div class="alt">Cherche l'affiche officielle ou une vue des pavillons. Autres idées : les Années folles (dancing, cabaret) ou l'Exposition coloniale de 1931.</div></li>
+          <li><b>B · Avancée technologique</b><span class="what">Un objet en Bakélite des années 1930 (poste de radio, téléphone)</span><div class="alt">La Bakélite, premier plastique industriel, date de 1909. Autres idées : une locomotive ou une voiture profilée (streamlining), le chrome et l'acier.</div></li>
+          <li><b>C · Figure majeure</b><span class="what">Un portrait de Cassandre, ou d'une autre figure du mouvement</span><div class="alt">Autres idées : Ruhlmann dans son atelier, Lalique, Raymond Hood ou William Van Alen. Choisis un portrait ou une photo de la personne, pas une de ses œuvres.</div></li>
+        </ul>
+      </section>
+
+      <section class="z">
+        <h2>Zone 1 · En-tête</h2>
+        <div class="coord">x 200 → 3308 · y 200 → 800</div>
+        <p>Nom du mouvement en très gros à gauche (colonnes 1 à 3), dates dessous. Le texte de 300 signes occupe les colonnes 4 à 6, à partir de x 1778.</p>
+      </section>
+      <section class="z">
+        <h2>Zone 2 · Trois images clés</h2>
+        <div class="coord">y 900 → 2050 · images de 1004 × 900 px à x 200, 1252 et 2304</div>
+        <p>Une étiquette au-dessus de chaque image (y 900), la légende en dessous : auteur·e, titre, date, source.</p>
+      </section>
+      <section class="z">
+        <h2>Zone 3 · Cinq œuvres</h2>
+        <div class="coord">y 2150 → 4170 · vignettes de 1004 × 780 px</div>
+        <p>Rangée 1 à y 2150, rangée 2 à y 3180. La 6e case reçoit les mots-clés et le nuancier, prêts pour la fiche « codes visuels ».</p>
+      </section>
+      <section class="z">
+        <h2>Zone 4 · Pied de page</h2>
+        <div class="coord">y 4270 → 4761</div>
+        <p>Nom du mouvement, sources principales, mention du module.</p>
+      </section>
+
+      <div class="warn">Les titres et les dates des œuvres sont à vérifier dans tes propres sources avant de les écrire sur la planche.</div>
+    </div>
+  </div>
+</div>
