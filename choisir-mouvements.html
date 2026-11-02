@@ -1,0 +1,348 @@
+<title>Choisir mes mouvements</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Mise en page : en-tête + barre de filtres collante + grille de cartes (une évocation dessinée par mouvement) */
+:root {
+  --bg: #eceef1; --fg: #14161a; --muted: #5a626d; --card: #ffffff; --line: #cfd4db;
+  --accent: #e4572e; --accent-fg: #ffffff; --chip: #e3e6ea;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111214; --fg: #eceef1; --muted: #9aa2ad; --card: #1b1d20; --line: #33373d;
+    --accent: #ff7a4d; --accent-fg: #14161a; --chip: #272a2f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111214; --fg: #eceef1; --muted: #9aa2ad; --card: #1b1d20; --line: #33373d;
+  --accent: #ff7a4d; --accent-fg: #14161a; --chip: #272a2f; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg); font-family: var(--display); line-height: 1.5; font-size: 15px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+.wrap { max-width: 1180px; margin: 0 auto; }
+header { padding-top: 32px; }
+h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.05; margin: 0 0 12px; font-weight: 800; letter-spacing: -0.02em; text-wrap: balance; }
+.intro { max-width: 62ch; color: var(--muted); margin: 0 0 8px; }
+.note { font-family: var(--mono); font-size: .78rem; color: var(--muted); max-width: 70ch; margin: 0; }
+
+.bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg);
+  display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; justify-content: space-between;
+  padding-block: 14px; margin-top: 20px; border-bottom: 1px solid var(--line);
+}
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.tabs button {
+  font: inherit; font-size: .88rem; padding: 6px 14px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--card); color: var(--fg);
+}
+.tabs button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.count { font-family: var(--mono); font-size: .85rem; }
+.count b { font-size: 1.1rem; }
+.count.full b { color: var(--accent); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 22px; padding-top: 24px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.card.picked { outline: 3px solid var(--accent); outline-offset: -1px; }
+.art { display: block; width: 100%; aspect-ratio: 4 / 3; background: #888; }
+.art svg { display: block; width: 100%; height: 100%; }
+.body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.card h2 { font-size: 1.2rem; margin: 0; font-weight: 800; line-height: 1.2; }
+.dates { font-family: var(--mono); font-size: .75rem; color: var(--muted); }
+.tag { font-family: var(--mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; background: var(--accent); color: var(--accent-fg); padding: 2px 8px; border-radius: 3px; }
+.kw { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0; list-style: none; }
+.kw li { background: var(--chip); font-size: .8rem; padding: 2px 9px; border-radius: 999px; }
+.pal { display: flex; gap: 0; height: 18px; border-radius: 3px; overflow: hidden; border: 1px solid var(--line); }
+.pal span { flex: 1; }
+dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; font-size: .85rem; }
+dt { font-family: var(--mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding-top: 2px; }
+dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 6px; }
+.actions button, .actions a {
+  font: inherit; font-size: .85rem; padding: 7px 12px; border-radius: 4px; cursor: pointer; text-decoration: none;
+  border: 1px solid var(--line); background: var(--card); color: var(--fg);
+}
+.actions button[aria-pressed="true"] { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+.actions .fixed { border-style: dashed; color: var(--muted); cursor: default; }
+.actions a:hover, .actions button:hover { border-color: var(--fg); }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+footer { margin-top: 36px; color: var(--muted); font-size: .85rem; max-width: 70ch; }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Choisir mes 7 mouvements</h1>
+    <p class="intro">Les 3 mouvements de 1980 à 2000 sont imposés. Il te reste à choisir 4 mouvements entre 1890 et 1980. Clique sur « Je garde » pour faire ta présélection.</p>
+    <p class="note">Les dessins sont des évocations faites pour comparer les ambiances. Ce ne sont pas les vraies œuvres. Le bouton « Voir les vraies images » ouvre une recherche d'images.</p>
+  </header>
+
+  <div class="bar">
+    <div class="tabs" id="tabs" role="group" aria-label="Filtrer par période"></div>
+    <div class="count" id="count" aria-live="polite"></div>
+  </div>
+
+  <main class="grid" id="grid"></main>
+
+  <footer>
+    Ta frise contient aussi Fauvisme, Blue Reiter, Nouvelle typographie, Abstraction-Création, Style international, Streamline Moderne et Art brut. Je les ai laissés de côté ici pour garder des styles très différents les uns des autres. Dis-moi si tu veux que je les ajoute.
+  </footer>
+</div>
+
+<script>
+const S = (inner, label) => `<svg viewBox="0 0 200 150" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${label}">${inner}</svg>`;
+const range = (n) => Array.from({ length: n }, (_, i) => i);
+
+const art = {
+  artnouveau: () => S(`
+    <rect width="200" height="150" fill="#eadfbf"/>
+    <rect x="8" y="8" width="184" height="134" rx="22" fill="none" stroke="#a67c2e" stroke-width="2"/>
+    <path d="M32 142 C44 100 84 112 72 62 C66 30 98 22 102 42" stroke="#3b6a4c" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M104 142 C98 108 142 100 136 72 C133 52 156 42 166 57" stroke="#3b6a4c" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="56" cy="92" rx="16" ry="7" transform="rotate(-35 56 92)" fill="#7ea36a"/>
+    <ellipse cx="124" cy="104" rx="15" ry="6" transform="rotate(30 124 104)" fill="#7ea36a"/>
+    <circle cx="102" cy="38" r="13" fill="#d28a3c"/><circle cx="102" cy="38" r="5" fill="#f3d9a0"/>
+    <circle cx="166" cy="55" r="10" fill="#c26a3a"/><circle cx="166" cy="55" r="4" fill="#f3d9a0"/>`, "Courbes végétales et fleurs sur fond crème"),
+
+  expressionnisme: () => S(`
+    <rect width="200" height="150" fill="#151515"/>
+    <polygon points="14,142 66,22 112,142" fill="#f2efe6"/>
+    <polygon points="92,142 142,46 192,142" fill="#c4281c"/>
+    <polygon points="66,22 84,70 52,64" fill="#151515"/>
+    <path d="M30 120 L52 70 M44 130 L62 92 M120 130 L142 86 M150 130 L162 104" stroke="#151515" stroke-width="3"/>
+    <polygon points="150,14 176,26 160,42" fill="#d9a441"/>`, "Formes taillées en pointes, noir blanc et rouge"),
+
+  cubisme: () => S(`
+    <rect width="200" height="150" fill="#cbb98e"/>
+    <polygon points="14,14 100,8 90,82 28,92" fill="#8a6d3b"/>
+    <polygon points="100,8 186,30 152,102 90,82" fill="#d9c9a0"/>
+    <polygon points="28,92 90,82 122,142 38,142" fill="#4a4a3f"/>
+    <polygon points="90,82 152,102 176,142 122,142" fill="#a58a52"/>
+    <path d="M14 14 L100 8 L186 30 L152 102 L176 142 M90 82 L90 8 M28 92 L38 142 M90 82 L122 142" stroke="#1d1a14" stroke-width="2" fill="none"/>
+    <text x="34" y="62" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#f0e8d0">JOU</text>`, "Facettes géométriques brun ocre avec lettres collées"),
+
+  futurisme: () => S(`
+    <rect width="200" height="150" fill="#f3e9d2"/>
+    <polygon points="0,150 118,0 150,0 34,150" fill="#c8281d"/>
+    <polygon points="64,150 170,6 186,6 92,150" fill="#151515"/>
+    <polygon points="120,150 200,40 200,70 150,150" fill="#e8b92a"/>
+    <path d="M0 120 L200 40 M0 138 L200 78 M0 100 L200 10" stroke="#151515" stroke-width="1.4"/>
+    <text x="14" y="52" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="24" fill="#151515" transform="rotate(-24 14 52)">VITESSE</text>`, "Diagonales et lignes de vitesse rouge noir jaune"),
+
+  suprematisme: () => S(`
+    <rect width="200" height="150" fill="#f4f1ea"/>
+    <rect x="44" y="26" width="62" height="62" fill="#151515" transform="rotate(-14 75 57)"/>
+    <rect x="112" y="76" width="56" height="20" fill="#c8281d" transform="rotate(22 140 86)"/>
+    <rect x="30" y="104" width="86" height="6" fill="#151515" transform="rotate(-6 73 107)"/>
+    <circle cx="156" cy="34" r="12" fill="#151515"/>
+    <polygon points="132,134 150,112 168,134" fill="#2a4ea6"/>
+    <rect x="18" y="124" width="14" height="14" fill="#e0b320"/>`, "Formes géométriques flottantes sur fond blanc"),
+
+  dada: () => S(`
+    <rect width="200" height="150" fill="#d9d2c0"/>
+    <rect x="0" y="18" width="200" height="12" fill="#b9b19c" transform="rotate(-3 100 24)"/>
+    <rect x="0" y="116" width="200" height="14" fill="#b9b19c" transform="rotate(2 100 123)"/>
+    <g transform="rotate(-7 44 70)"><rect x="14" y="36" width="56" height="66" fill="#f7f4ea"/><text x="24" y="92" font-family="Georgia, serif" font-weight="700" font-size="62" fill="#151515">D</text></g>
+    <g transform="rotate(6 90 70)"><rect x="68" y="30" width="44" height="58" fill="#c8281d"/><text x="76" y="78" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="50" fill="#f7f4ea">A</text></g>
+    <g transform="rotate(-4 130 80)"><rect x="108" y="52" width="42" height="56" fill="#151515"/><text x="115" y="98" font-family="Courier New, monospace" font-weight="700" font-size="48" fill="#f7f4ea">D</text></g>
+    <g transform="rotate(9 170 70)"><rect x="150" y="34" width="38" height="60" fill="#e8c32a"/><text x="157" y="82" font-family="Georgia, serif" font-style="italic" font-weight="700" font-size="52" fill="#151515">A</text></g>`, "Lettres de formats et polices différents collées"),
+
+  artdeco: () => {
+    const rays = range(15).map(i => { const a = Math.PI * (1 + i / 14); return `<line x1="100" y1="118" x2="${(100 + 120 * Math.cos(a)).toFixed(1)}" y2="${(118 + 120 * Math.sin(a)).toFixed(1)}" stroke="#c9a24a" stroke-width="2"/>`; }).join("");
+    return S(`
+    <rect width="200" height="150" fill="#14110f"/>
+    ${rays}
+    <path d="M60 118 A40 40 0 0 1 140 118 Z" fill="#c9a24a"/>
+    <path d="M72 118 A28 28 0 0 1 128 118 Z" fill="#14110f"/>
+    <rect y="118" width="200" height="32" fill="#1f6b57"/>
+    <path d="M0 128 l12 -8 12 8 12 -8 12 8 12 -8 12 8 12 -8 12 8 12 -8 12 8 12 -8 12 8 12 -8 12 8 12 -8 12 8 12 -8 12 8 M0 142 l12 -8 12 8 12 -8 12 8 12 -8 12 8 12 -8 12 8 12 -8 12 8 12 -8 12 8 12 -8 12 8 12 -8 12 8 12 -8 12 8" stroke="#c9a24a" stroke-width="2" fill="none"/>`, "Soleil rayonnant doré et chevrons sur fond noir"); },
+
+  constructivisme: () => S(`
+    <rect width="200" height="150" fill="#e9dfc9"/>
+    <circle cx="124" cy="68" r="46" fill="#c8281d"/>
+    <polygon points="0,150 0,96 110,22 128,40 40,150" fill="#151515"/>
+    <rect x="0" y="0" width="200" height="14" fill="#151515"/>
+    <rect x="96" y="112" width="92" height="24" fill="#151515" transform="rotate(-8 142 124)"/>
+    <text x="104" y="130" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="16" fill="#e9dfc9" transform="rotate(-8 142 124)">ПРОПАГАНДА</text>`, "Cercle rouge, diagonale noire et bandeau de texte"),
+
+  destijl: () => S(`
+    <rect width="200" height="150" fill="#f4f1ea"/>
+    <rect x="6" y="6" width="92" height="76" fill="#c8281d"/>
+    <rect x="6" y="118" width="92" height="26" fill="#1f3f95"/>
+    <rect x="162" y="118" width="32" height="26" fill="#f0c419"/>
+    <g stroke="#151515" stroke-width="5"><line x1="100" y1="0" x2="100" y2="150"/><line x1="162" y1="0" x2="162" y2="150"/><line x1="0" y1="84" x2="200" y2="84"/><line x1="0" y1="116" x2="200" y2="116"/></g>`, "Grille noire avec aplats rouge bleu jaune"),
+
+  bauhaus: () => S(`
+    <rect width="200" height="150" fill="#efe6d2"/>
+    <circle cx="62" cy="80" r="40" fill="#1f3f95"/>
+    <polygon points="98,134 148,42 194,134" fill="#d0291f"/>
+    <rect x="112" y="14" width="40" height="40" fill="#f0c419" transform="rotate(14 132 34)"/>
+    <line x1="10" y1="132" x2="190" y2="132" stroke="#151515" stroke-width="4"/>
+    <line x1="62" y1="10" x2="62" y2="140" stroke="#151515" stroke-width="2"/>
+    <text x="14" y="26" font-family="Archivo, Arial, sans-serif" font-weight="600" font-size="14" fill="#151515">bauhaus</text>`, "Cercle triangle carré, couleurs primaires, minuscules"),
+
+  surrealisme: () => S(`
+    <defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fbddb"/><stop offset="1" stop-color="#f1d3ad"/></linearGradient></defs>
+    <rect width="200" height="150" fill="url(#sk)"/>
+    <rect y="102" width="200" height="48" fill="#8a6a45"/>
+    <ellipse cx="100" cy="46" rx="44" ry="24" fill="#f7f4ea" stroke="#151515" stroke-width="2.5"/>
+    <circle cx="100" cy="46" r="15" fill="#3b5f7a"/><circle cx="100" cy="46" r="6.5" fill="#151515"/>
+    <ellipse cx="100" cy="112" rx="42" ry="7" fill="#4a3826" opacity=".55"/>
+    <path d="M140 102 q8 -30 4 -44 q14 12 8 44 Z" fill="#5a4430"/>
+    <path d="M24 102 q4 -22 -2 -34" stroke="#151515" stroke-width="2" fill="none"/>
+    <path d="M12 70 q10 -6 20 2 q-6 10 -20 -2 Z" fill="#e9e3d5" stroke="#151515" stroke-width="1.5"/>`, "Œil géant flottant dans un paysage désert"),
+
+  graphismesuisse: () => S(`
+    <rect width="200" height="150" fill="#f4f4f2"/>
+    <g stroke="#c7c7c2" stroke-width="1"><line x1="20" y1="0" x2="20" y2="150"/><line x1="100" y1="0" x2="100" y2="150"/><line x1="180" y1="0" x2="180" y2="150"/><line x1="0" y1="20" x2="200" y2="20"/><line x1="0" y1="130" x2="200" y2="130"/></g>
+    <text x="20" y="116" font-family="Archivo, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" fill="#151515" letter-spacing="-4">Aa</text>
+    <circle cx="148" cy="52" r="15" fill="#d0291f"/>
+    <rect x="100" y="84" width="60" height="4" fill="#151515"/><rect x="100" y="94" width="42" height="4" fill="#151515"/><rect x="100" y="104" width="52" height="4" fill="#151515"/>
+    <text x="184" y="20" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="10" fill="#151515" transform="rotate(90 184 20)">Zürich 1957</text>`, "Grille stricte, gros caractère sans empattement, point rouge"),
+
+  popart: () => S(`
+    <defs><pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2.3" fill="#d0291f"/></pattern></defs>
+    <rect width="200" height="150" fill="#ffe14a"/>
+    <rect width="200" height="150" fill="url(#dots)"/>
+    <path d="M26 30 L66 18 L88 34 L130 14 L142 42 L180 44 L156 72 L176 100 L134 98 L112 126 L92 98 L52 112 L62 82 L22 66 Z" fill="#f7f4ea" stroke="#151515" stroke-width="4" stroke-linejoin="round"/>
+    <text x="100" y="82" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="30" fill="#d0291f" stroke="#151515" stroke-width="1.4">POW!</text>
+    <rect x="0" y="128" width="200" height="22" fill="#1f3f95"/>`, "Trames de points, bulle d'onomatopée, couleurs vives"),
+
+  opart: () => {
+    const c = (cx) => range(15).map(i => `<circle cx="${cx}" cy="75" r="${6 + i * 6}" fill="none" stroke="#151515" stroke-width="1.8"/>`).join("");
+    return S(`<rect width="200" height="150" fill="#ffffff"/>${c(84)}${c(116)}`, "Cercles concentriques décalés qui créent un effet de vibration"); },
+
+  psychedelique: () => {
+    const cols = ["#ff3d8b", "#ffb800", "#14d4c4", "#7cff4e", "#ff6a1a", "#b44dff"];
+    const waves = cols.map((col, i) => { const y = 18 + i * 22; return `<path d="M-10 ${y} C 30 ${y - 22}, 60 ${y + 22}, 100 ${y} S 170 ${y - 22}, 210 ${y}" stroke="${col}" stroke-width="12" fill="none"/>`; }).join("");
+    return S(`<rect width="200" height="150" fill="#2b0f4f"/>${waves}
+    <circle cx="150" cy="75" r="26" fill="#2b0f4f" stroke="#f7e84a" stroke-width="4"/><circle cx="150" cy="75" r="12" fill="#ff3d8b"/><circle cx="150" cy="75" r="4" fill="#2b0f4f"/>`, "Bandes ondulantes aux couleurs vibrantes"); },
+
+  punk: () => {
+    const letters = [["P", "#151515", "#f7f4ea", -6, "Georgia, serif"], ["U", "#ff2a8a", "#151515", 5, "Archivo, Arial, sans-serif"], ["N", "#f7f4ea", "#151515", -4, "Courier New, monospace"], ["K", "#e8e02a", "#151515", 7, "Georgia, serif"]];
+    const b = letters.map((l, i) => `<g transform="rotate(${l[3]} ${28 + i * 44} 75)"><rect x="${8 + i * 44}" y="42" width="40" height="64" fill="${l[1]}" stroke="#151515" stroke-width="1.5"/><text x="${28 + i * 44}" y="92" text-anchor="middle" font-family="${l[4]}" font-weight="800" font-size="46" fill="${l[2]}">${l[0]}</text></g>`).join("");
+    return S(`<rect width="200" height="150" fill="#e4e4e4"/>
+    <rect x="-10" y="14" width="220" height="14" fill="#151515" transform="rotate(-3 100 21)"/>
+    <rect x="-10" y="120" width="220" height="12" fill="#ff2a8a" transform="rotate(2 100 126)"/>${b}
+    <path d="M0 140 l6 -3 6 3 6 -3 6 3 6 -3 6 3 6 -3 6 3 6 -3 6 3 6 -3 6 3 6 -3 6 3 6 -3 6 3 6 -3 6 3 6 -3 6 3 6 -3 6 3 6 -3 6 3 6 -3 6 3 6 -3 6 3 6 -3 6 3 6 -3 6 3 6 -3 6 3 6 -3 6 3" stroke="#151515" stroke-width="1.5" fill="none"/>`, "Lettres découpées façon rançon, noir blanc rose fluo"); },
+
+  militant: () => S(`
+    <rect width="200" height="150" fill="#d12a1f"/>
+    <g fill="#151515">
+      <rect x="14" y="70" width="172" height="56"/>
+      <rect x="28" y="30" width="14" height="42"/><rect x="58" y="44" width="14" height="28"/><rect x="150" y="26" width="16" height="46"/>
+      <polygon points="14,70 14,56 40,70"/><polygon points="44,70 44,56 70,70"/><polygon points="74,70 74,56 100,70"/><polygon points="104,70 104,56 130,70"/>
+    </g>
+    <path d="M32 24 q6 -8 0 -16 M158 20 q6 -8 0 -16" stroke="#151515" stroke-width="3" fill="none"/>
+    <text x="100" y="116" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="22" fill="#f7f4ea">LA LUTTE CONTINUE</text>`, "Silhouette d'usine en noir sur fond rouge, deux couleurs"),
+
+  postmodernisme: () => {
+    const conf = [[22,28,"#151515",8],[170,20,"#2a4ea6",7],[30,118,"#d0291f",9],[176,126,"#151515",7],[96,24,"#d0291f",6],[148,100,"#00a7a0",8],[60,64,"#2a4ea6",6]].map(c => `<rect x="${c[0]}" y="${c[1]}" width="${c[3]}" height="${c[3] * 0.4}" fill="${c[2]}" transform="rotate(${c[0] * 3 % 90} ${c[0]} ${c[1]})"/>`).join("");
+    return S(`<rect width="200" height="150" fill="#ffd1dc"/>${conf}
+    <polygon points="20,134 62,60 104,134" fill="#ffd23f" stroke="#151515" stroke-width="3"/>
+    <circle cx="140" cy="64" r="28" fill="#3a5bd9"/>
+    <g fill="#ffd1dc"><circle cx="130" cy="56" r="3.5"/><circle cx="144" cy="52" r="3.5"/><circle cx="150" cy="68" r="3.5"/><circle cx="134" cy="74" r="3.5"/></g>
+    <path d="M70 30 q10 -16 20 0 t20 0 t20 0" stroke="#00a7a0" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M110 134 l10 -18 10 18 10 -18 10 18 10 -18 10 18" stroke="#151515" stroke-width="6" fill="none"/>`, "Formes ludiques pastel : triangle, cercle à points, zigzag"); },
+
+  experimental: () => S(`
+    <rect width="200" height="150" fill="#1d1d1d"/>
+    <g font-family="Archivo, Arial, sans-serif" font-weight="800">
+      <text x="10" y="70" font-size="62" fill="#f1efe8" opacity=".9" transform="rotate(-6 10 70)">NOI</text>
+      <text x="62" y="96" font-size="62" fill="#ff3d8b" opacity=".85" transform="rotate(4 62 96)">SE</text>
+      <text x="30" y="124" font-size="40" fill="none" stroke="#f1efe8" stroke-width="1.2" transform="rotate(-2 30 124)">type</text>
+    </g>
+    <g fill="#f1efe8"><rect x="150" y="16" width="8" height="8"/><rect x="162" y="16" width="8" height="8" opacity=".5"/><rect x="174" y="28" width="8" height="8"/><rect x="150" y="40" width="8" height="8" opacity=".3"/></g>
+    <text x="140" y="140" font-family="IBM Plex Mono, monospace" font-size="7" fill="#9aa2ad">illisible ? oui.</text>
+    <line x1="0" y1="104" x2="200" y2="96" stroke="#ff3d8b" stroke-width="1"/>`, "Mots superposés, texte déformé, pixels"),
+
+  newwave: () => S(`
+    <rect width="200" height="150" fill="#f2f0e6"/>
+    <g stroke="#151515" stroke-width=".8" opacity=".35"><line x1="0" y1="30" x2="200" y2="52"/><line x1="0" y1="60" x2="200" y2="82"/><line x1="0" y1="90" x2="200" y2="112"/></g>
+    <rect x="124" y="16" width="52" height="34" fill="#00c2d1"/>
+    <circle cx="48" cy="102" r="22" fill="#ff3f9a"/>
+    <polygon points="140,128 164,84 188,128" fill="#ffd60a"/>
+    <text x="14" y="76" font-family="Archivo, Helvetica, Arial, sans-serif" font-weight="800" font-size="26" letter-spacing="9" fill="#151515">WAVE</text>
+    <g><rect x="14" y="14" width="10" height="10" fill="#151515"/><rect x="26" y="14" width="10" height="10" fill="#151515" opacity=".6"/><rect x="38" y="14" width="10" height="10" fill="#151515" opacity=".3"/></g>
+    <text x="14" y="138" font-family="IBM Plex Mono, monospace" font-size="7" fill="#151515">does it make sense ?</text>`, "Lettres très espacées, blocs de couleur décalés"),
+};
+
+const M = [
+  { k: "postmodernisme", era: "c", name: "Postmodernisme", dates: "≈1960–1990", kw: ["ludique", "ironie", "couleurs pastel"], pal: ["#ffd1dc","#ffd23f","#3a5bd9","#00a7a0","#151515"], typo: "Formes et lettrages mélangés, souvent décoratifs", find: "Memphis (Ettore Sottsass, 1981), Paula Scher" },
+  { k: "experimental", era: "c", name: "Design graphique à l'ère du postmodernisme", dates: "≈1975–2000", kw: ["superposition", "texte brouillé", "numérique"], pal: ["#1d1d1d","#f1efe8","#ff3d8b","#9aa2ad"], typo: "Polices créées pour l'écran, mots superposés", find: "David Carson (Ray Gun), Neville Brody, Emigre" },
+  { k: "newwave", era: "c", name: "La New Wave", dates: "≈1978–1988", kw: ["grille détournée", "lettres espacées", "blocs de couleur"], pal: ["#f2f0e6","#00c2d1","#ff3f9a","#ffd60a","#151515"], typo: "Sans empattement très espacé, graisses mélangées", find: "April Greiman, Wolfgang Weingart, Ed Fella" },
+
+  { k: "artnouveau", era: "a", name: "Art nouveau", dates: "≈1890–1910", kw: ["courbes", "nature", "ornement"], pal: ["#eadfbf","#3b6a4c","#d28a3c","#a67c2e"], typo: "Lettrages dessinés à la main, intégrés au décor", find: "Alphonse Mucha, Hector Guimard, Émile Gallé" },
+  { k: "expressionnisme", era: "a", name: "Expressionnisme allemand", dates: "≈1905–1930", kw: ["tension", "angles", "contraste"], pal: ["#151515","#f2efe6","#c4281c","#d9a441"], typo: "Lettres anguleuses, gravées comme sur du bois", find: "Die Brücke, Kirchner, affiche de Caligari (1920)" },
+  { k: "cubisme", era: "a", name: "Cubisme", dates: "≈1907–1914", kw: ["facettes", "collage", "tons terreux"], pal: ["#cbb98e","#8a6d3b","#4a4a3f","#d9c9a0"], typo: "Lettres de journal collées dans la composition", find: "Picasso, Braque, papiers collés" },
+  { k: "futurisme", era: "a", name: "Futurisme", dates: "1909–1944", kw: ["vitesse", "diagonales", "énergie"], pal: ["#f3e9d2","#c8281d","#151515","#e8b92a"], typo: "Mots éclatés, tailles et sens de lecture variés", find: "Marinetti, Boccioni, Depero, Balla" },
+  { k: "suprematisme", era: "a", name: "Suprématisme", dates: "≈1915–1930", kw: ["abstraction", "formes pures", "vide"], pal: ["#f4f1ea","#151515","#c8281d","#2a4ea6"], typo: "Très peu de texte, formes en suspension", find: "Malevitch, Carré noir sur fond blanc, El Lissitzky" },
+  { k: "dada", era: "a", name: "Dadaïsme", dates: "1916–1924", kw: ["collage", "absurde", "lettres mélangées"], pal: ["#d9d2c0","#c8281d","#151515","#e8c32a"], typo: "Polices variées mélangées sur une même ligne", find: "Hannah Höch, Kurt Schwitters, Raoul Hausmann" },
+  { k: "artdeco", era: "a", name: "Art déco", dates: "≈1909–1939", kw: ["luxe", "symétrie", "géométrie"], pal: ["#14110f","#c9a24a","#1f6b57","#f1e9d6"], typo: "Capitales géométriques, très élégantes", find: "Cassandre (Normandie, Dubonnet), Chrysler Building" },
+  { k: "constructivisme", era: "a", name: "Constructivisme russe", dates: "≈1914–1932", kw: ["diagonales", "propagande", "rouge et noir"], pal: ["#e9dfc9","#c8281d","#151515"], typo: "Grotesques massives en bandeaux", find: "Rodchenko, El Lissitzky, frères Stenberg" },
+  { k: "destijl", era: "a", name: "De Stijl", dates: "1917–1931", kw: ["grille", "primaires", "angles droits"], pal: ["#f4f1ea","#c8281d","#1f3f95","#f0c419","#151515"], typo: "Lettres construites avec des angles droits", find: "Mondrian, Theo van Doesburg, Rietveld" },
+  { k: "bauhaus", era: "a", name: "Bauhaus", dates: "1919–1933", kw: ["fonction", "formes simples", "minuscules"], pal: ["#efe6d2","#1f3f95","#d0291f","#f0c419","#151515"], typo: "Sans empattement tout en minuscules", find: "Herbert Bayer, Moholy-Nagy, Joost Schmidt" },
+  { k: "surrealisme", era: "a", name: "Surréalisme", dates: "1924–1966", kw: ["rêve", "étrange", "associations"], pal: ["#8fbddb","#f1d3ad","#8a6a45","#3b5f7a"], typo: "Texte discret, image étrange au premier plan", find: "Magritte, Dalí, Max Ernst, Man Ray" },
+
+  { k: "graphismesuisse", era: "b", name: "Style suisse", dates: "≈1950–1970", kw: ["grille", "lisibilité", "neutralité"], pal: ["#f4f4f2","#151515","#d0291f"], typo: "Sans empattement (Helvetica, Akzidenz-Grotesk)", find: "Josef Müller-Brockmann, Armin Hofmann" },
+  { k: "popart", era: "b", name: "Pop art", dates: "≈1950–1970", kw: ["trames", "couleurs vives", "culture populaire"], pal: ["#ffe14a","#d0291f","#1f3f95","#151515","#f7f4ea"], typo: "Lettres épaisses de bandes dessinées", find: "Andy Warhol, Roy Lichtenstein, Richard Hamilton" },
+  { k: "opart", era: "b", name: "Op Art", dates: "≈1955–1970", kw: ["illusion", "noir et blanc", "vibration"], pal: ["#ffffff","#151515"], typo: "Lettres géométriques très simples", find: "Victor Vasarely, Bridget Riley" },
+  { k: "psychedelique", era: "b", name: "Graphisme psychédélique", dates: "≈1966–1972", kw: ["ondulations", "couleurs vibrantes", "lettres fondues"], pal: ["#2b0f4f","#ff3d8b","#ffb800","#14d4c4","#7cff4e"], typo: "Lettres qui se déforment et se remplissent l'espace", find: "Wes Wilson, Victor Moscoso, affiches du Fillmore" },
+  { k: "punk", era: "b", name: "Graphisme punk", dates: "≈1976–1984", kw: ["rançon", "photocopie", "brut"], pal: ["#e4e4e4","#151515","#ff2a8a","#e8e02a"], typo: "Lettres découpées dans des journaux, collées à la main", find: "Jamie Reid (Sex Pistols), Raymond Pettibon" },
+  { k: "militant", era: "b", name: "Graphisme militant", dates: "XXe siècle à aujourd'hui", kw: ["slogan", "2 couleurs", "sérigraphie"], pal: ["#d12a1f","#151515","#f7f4ea"], typo: "Lettres épaisses, faites à la main ou au pochoir", find: "Atelier populaire (Mai 68), Grapus" },
+];
+
+const TABS = [["all", "Tous"], ["c", "Imposés (1980-2000)"], ["a", "1890-1939"], ["b", "1939-1980"], ["pick", "Ma sélection"]];
+let filter = "all";
+let picked = new Set();
+try { picked = new Set(JSON.parse(localStorage.getItem("mmi-picked") || "[]")); } catch (e) {}
+const save = () => { try { localStorage.setItem("mmi-picked", JSON.stringify([...picked])); } catch (e) {} };
+
+const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function render() {
+  document.getElementById("tabs").innerHTML = TABS.map(([id, label]) =>
+    `<button type="button" data-f="${id}" aria-pressed="${filter === id}">${label}</button>`).join("");
+
+  const list = M.filter((m) => filter === "all" || (filter === "pick" ? picked.has(m.k) : m.era === filter));
+  document.getElementById("grid").innerHTML = list.map((m) => {
+    const imposed = m.era === "c", on = picked.has(m.k);
+    const q = encodeURIComponent(m.name + " graphisme affiche");
+    return `<article class="card${on ? " picked" : ""}">
+      <div class="art">${art[m.k]()}</div>
+      <div class="body">
+        <div class="head"><h2>${esc(m.name)}</h2>${imposed ? '<span class="tag">Imposé</span>' : ""}</div>
+        <div class="dates">${esc(m.dates)}</div>
+        <ul class="kw">${m.kw.map((k) => `<li>${esc(k)}</li>`).join("")}</ul>
+        <div class="pal" aria-label="Palette">${m.pal.map((c) => `<span style="background:${c}"></span>`).join("")}</div>
+        <dl><dt>Typo</dt><dd>${esc(m.typo)}</dd><dt>Chercher</dt><dd>${esc(m.find)}</dd></dl>
+        <div class="actions">
+          ${imposed ? '<span class="fixed" style="padding:7px 12px;border-radius:4px;border:1px dashed var(--line)">Déjà dans ta liste</span>'
+            : `<button type="button" data-k="${m.k}" aria-pressed="${on}">${on ? "Je garde ✓" : "Je garde"}</button>`}
+          <a href="https://www.google.com/search?tbm=isch&q=${q}" target="_blank" rel="noopener">Voir les vraies images</a>
+        </div>
+      </div></article>`;
+  }).join("") || '<p style="grid-column:1/-1;color:var(--muted)">Aucun mouvement dans cette sélection pour l\'instant.</p>';
+
+  const n = [...picked].filter((k) => M.some((m) => m.k === k && m.era !== "c")).length;
+  const c = document.getElementById("count");
+  c.className = "count" + (n === 4 ? " full" : "");
+  c.innerHTML = `Ta sélection avant 1980 : <b>${n}</b> / 4` + (n > 4 ? " (trop, il en faut 4)" : "");
+}
+
+document.addEventListener("click", (e) => {
+  const f = e.target.closest("[data-f]");
+  if (f) { filter = f.dataset.f; render(); return; }
+  const k = e.target.closest("[data-k]");
+  if (k) { const id = k.dataset.k; picked.has(id) ? picked.delete(id) : picked.add(id); save(); render(); }
+});
+render();
+</script>
