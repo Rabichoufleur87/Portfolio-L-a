@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Illustrations — Léa Vergnenegre</title>
+  <meta name="description" content="Les dessins personnels de Léa Vergnenegre, réalisés sur Adobe Fresco et Illustrator." />
+  <link rel="icon" href="../assets/img/avatar/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="header">
+    <div class="header__inner">
+      <a href="../index.html" class="header__logo" aria-label="Retour à l'accueil">
+        <img src="../assets/img/avatar/avatar-tete.webp" alt="" width="56" height="57" />
+      </a>
+
+      <button class="header__burger" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+        <span></span><span></span>
+      </button>
+
+      <nav class="nav" id="menu" aria-label="Navigation principale">
+        <a href="../index.html#a-propos" class="btn btn--lilas">À propos</a>
+        <a href="../index.html#realisations" class="btn btn--lilas">Mes réalisations</a>
+        <a href="../index.html#contact" class="btn btn--lilas">Me contacter</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" class="container">
+
+    <section class="project-hero">
+      <a href="../index.html#realisations" class="back hand">← toutes mes réalisations</a>
+      <br />
+      <span class="card__tag card__tag--perso">Personnel</span>
+      <h1 class="title" data-reveal="up">illustrations</h1>
+      <p class="project-hero__lead" data-reveal="up">
+        Mes dessins et animations personnels, réalisés sur Adobe Fresco et Illustrator en dehors des cours.
+      </p>
+    </section>
+
+    <!--
+      GALERIE : un dessin = un <li>. Pour en ajouter un, dupliquer un <li>, changer
+      l'image (src), le texte alternatif (alt) et le titre (data-caption + figcaption).
+    -->
+    <ul class="gallery" aria-label="Dessins">
+      <li data-reveal="up">
+        <button class="gallery__item" type="button" data-lightbox data-caption="Sieste au salon · animation Fresco">
+          <video poster="../assets/img/projets/illustrations/animation-salon.webp" width="1080" height="1080" autoplay muted loop playsinline aria-label="Animation : un petit chien s'endort sur un fauteuil vert dans un salon, une tasse fume sur la table basse">
+            <source src="../assets/img/projets/illustrations/animation-salon.webm" type="video/webm" />
+            <source src="../assets/img/projets/illustrations/animation-salon.mp4" type="video/mp4" />
+          </video>
+        </button>
+        <p class="gallery__caption"><span class="hand">sieste au salon</span> <span class="gallery__tool">Animation · Fresco</span></p>
+      </li>
+      <li data-reveal="up">
+        <button class="gallery__item" type="button" data-lightbox data-caption="Autoportrait · Fresco">
+          <img src="../assets/img/projets/illustrations/autoportrait.webp" alt="Autoportrait : jeune femme aux cheveux noirs au carré, frange, regard en coin et pull blanc, sur fond vert texturé" width="1600" height="1600" loading="lazy" />
+        </button>
+        <p class="gallery__caption"><span class="hand">autoportrait</span> <span class="gallery__tool">Fresco</span></p>
+      </li>
+      <li data-reveal="up">
+        <button class="gallery__item" type="button" data-lightbox data-caption="Lanternes · Fresco">
+          <img src="../assets/img/projets/illustrations/lanternes.webp" alt="Lanternes rouges et crème suspendues dans la nuit, entre des feuillages vert olive, au rendu texturé façon peinture" width="1600" height="1131" loading="lazy" />
+        </button>
+        <p class="gallery__caption"><span class="hand">lanternes</span> <span class="gallery__tool">Fresco</span></p>
+      </li>
+      <li data-reveal="up">
+        <button class="gallery__item" type="button" data-lightbox data-caption="Mont Fuji · Illustrator">
+          <img src="../assets/img/projets/illustrations/mont-fuji.webp" alt="Mont Fuji enneigé devant un soleil rouge, torii rouge au bord de l'eau et branches de cerisier en fleurs, en aplats de couleur" width="1077" height="1080" loading="lazy" />
+        </button>
+        <p class="gallery__caption"><span class="hand">mont fuji</span> <span class="gallery__tool">Illustrator</span></p>
+      </li>
+      <li data-reveal="up">
+        <button class="gallery__item" type="button" data-lightbox data-caption="Raisins · Fresco">
+          <img src="../assets/img/projets/illustrations/raisins.webp" alt="Grappe de raisins rouges aux reflets clairs, peinte façon aquarelle sur fond blanc" width="1200" height="1200" loading="lazy" />
+        </button>
+        <p class="gallery__caption"><span class="hand">raisins</span> <span class="gallery__tool">Fresco</span></p>
+      </li>
+      <li data-reveal="up">
+        <button class="gallery__item" type="button" data-lightbox data-caption="Carpes koï · Illustrator">
+          <img src="../assets/img/projets/illustrations/carpes-koi.webp" alt="Deux carpes koï blanches tachetées d'orange, vues de dessus dans une eau vert sombre, en aplats de couleur" width="575" height="573" loading="lazy" />
+        </button>
+        <p class="gallery__caption"><span class="hand">carpes koï</span> <span class="gallery__tool">Illustrator</span></p>
+      </li>
+      <li data-reveal="up">
+        <button class="gallery__item" type="button" data-lightbox data-caption="Cookie au matcha · Fresco">
+          <img src="../assets/img/projets/illustrations/cookie.webp" alt="Cookie vert parsemé d'éclats clairs, dessiné au crayon et à la peinture sur papier texturé" width="1200" height="1200" loading="lazy" />
+        </button>
+        <p class="gallery__caption"><span class="hand">cookie au matcha</span> <span class="gallery__tool">Fresco</span></p>
+      </li>
+      <li data-reveal="up">
+        <button class="gallery__item" type="button" data-lightbox data-caption="Soupe aux nouilles · Fresco">
+          <img src="../assets/img/projets/illustrations/soupe.webp" alt="Marmite dorée à deux anses vue de dessus, remplie de bouillon, nouilles, œuf, champignons shiitake et légumes verts" width="1600" height="1600" loading="lazy" />
+        </button>
+        <p class="gallery__caption"><span class="hand">soupe aux nouilles</span> <span class="gallery__tool">Fresco</span></p>
+      </li>
+      <li data-reveal="up">
+        <button class="gallery__item" type="button" data-lightbox data-caption="Plante au soleil · Fresco">
+          <img src="../assets/img/projets/illustrations/plante.webp" alt="Pot de plante au visage endormi posé sur un rebord de fenêtre, sous des feuilles retombantes baignées de lumière" width="1125" height="1125" loading="lazy" />
+        </button>
+        <p class="gallery__caption"><span class="hand">plante au soleil</span> <span class="gallery__tool">Fresco</span></p>
+      </li>
+      <li data-reveal="up">
+        <button class="gallery__item" type="button" data-lightbox data-caption="Tartine aux œufs · Fresco">
+          <img src="../assets/img/projets/illustrations/tartine.webp" alt="Tartine de pain grillé garnie d'œufs durs en tranches poivrés et de légumes verts, au rendu peinture" width="1500" height="1500" loading="lazy" />
+        </button>
+        <p class="gallery__caption"><span class="hand">tartine aux œufs</span> <span class="gallery__tool">Fresco</span></p>
+      </li>
+    </ul>
+
+    <nav class="project-nav" aria-label="Navigation entre projets">
+      <a href="lido.html">← Le Lido</a>
+      <a href="../index.html#realisations">Voir les autres projets →</a>
+    </nav>
+
+  </main>
+
+  <!-- Visionneuse plein écran (ouverte au clic sur un dessin) -->
+  <dialog class="lightbox" aria-label="Dessin agrandi">
+    <button class="lightbox__close" type="button" aria-label="Fermer">×</button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Dessin précédent">←</button>
+    <figure class="lightbox__figure">
+      <img src="" alt="" />
+      <video muted loop playsinline hidden></video>
+      <figcaption class="hand"></figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Dessin suivant">→</button>
+  </dialog>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© 2026 Léa Vergnenegre</span>
+      <a href="#" class="hand">retour en haut ↑</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
