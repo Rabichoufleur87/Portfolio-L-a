@@ -904,6 +904,62 @@ button {
   color: var(--olive);
 }
 
+/* Vidéo d'un projet ------------------------------------------------------ */
+.project-video {
+  max-width: 980px;
+  margin: 0 auto clamp(1rem, 3vw, 2rem);
+}
+
+.project-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 2px solid var(--olive);
+  border-radius: var(--radius);
+  background: var(--olive-fonce);
+  box-shadow: 10px 10px 0 var(--lilas);
+}
+
+.project-video figcaption {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.4rem;
+  color: var(--olive);
+}
+
+/* Plans clés d'une vidéo, dans l'ordre du montage */
+.shots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+  counter-reset: shot;
+  list-style: none;
+  text-align: left;
+}
+
+.shots li {
+  display: grid;
+  gap: 0.5rem;
+  counter-increment: shot;
+}
+
+.shots img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.shots .hand {
+  font-size: 1.4rem;
+  color: var(--olive);
+}
+
+.shots .hand::before {
+  content: counter(shot) ". ";
+  color: var(--lilas);
+}
+
 /* Galerie d'illustrations ------------------------------------------------- */
 .gallery {
   columns: 3 260px;
@@ -1173,6 +1229,10 @@ button {
   }
 
   .project-gallery--posts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .shots {
     grid-template-columns: repeat(2, 1fr);
   }
 
